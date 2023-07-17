@@ -24,7 +24,9 @@ const store = new Vuex.Store({
       context.commit('setRandomValue', Math.random());
       context.dispatch('writeMicroAppDataToLocalStorage');
     },
-    getAppDataFromLocalStorage(context) {
+    getHostDataFromLocalStorage(context) {
+      // This action gets data from localStorage from the host application. This allows
+      // the host application to set data that the client application can use.
       const appData = JSON.parse(localStorage.getItem('appData') || '{}');
 
       if (appData.orgId) {
@@ -32,6 +34,8 @@ const store = new Vuex.Store({
       }
     },
     writeMicroAppDataToLocalStorage(context) {
+      // We write the micro app data to localStorage so that the host application can
+      // pick up where it left off and 'hydrate' the local storage.
       localStorage.setItem(
         'microAppData',
         JSON.stringify({
@@ -40,6 +44,7 @@ const store = new Vuex.Store({
       );
     },
     getMicroAppDataFromLocalStorage(context) {
+      // This action gets data from localStorage for the client application.
       const appData = JSON.parse(localStorage.getItem('microAppData') || '{}');
 
       if (appData.randomValue) {

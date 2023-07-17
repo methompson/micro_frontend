@@ -5,6 +5,10 @@ import { myQNavEventName } from '@/shared/eventBus';
 
 Vue.use(VueRouter);
 
+/**
+ * Each route for an external application is prefixed with the name of the application.
+ */
+
 const routes: Array<RouteConfig> = [
   {
     path: '/',
@@ -64,10 +68,15 @@ const router = new VueRouter({
   routes,
 });
 
+/**
+ * This is a global after hook that will be called after every route change.
+ * It will emit an event to the eventBus that will be picked up by the host application and
+ * all other client applications. This is how we will keep the navigation in sync between
+ * all of the applications.
+ */
 router.afterEach((to, from) => {
   // console.log('Route has changed', to, from);
   window.eventBus?.emit(myQNavEventName, { fullPath: to.fullPath });
-  // dispatchMyQNavEvent(to.fullPath);
 });
 
 export default router;

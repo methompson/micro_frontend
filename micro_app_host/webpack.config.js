@@ -6,6 +6,13 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const port = 8080;
 
+/**
+ * The host application doesn't use any special Webpack configuration option except for
+ * output.environment. We set module and dynamicImport to true to enable Webpack 5's
+ * native module and dynamic import support. This is required for the host application
+ * to be able to load client ES Modules on-demand.
+ */
+
 module.exports = {
   mode: 'development',
   cache: false,

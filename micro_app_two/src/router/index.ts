@@ -4,6 +4,10 @@ import { myQNavEventName } from '@/shared/eventBus';
 
 export const routePrefix = '/microAppTwo';
 
+// Look at micro_app_one's router commentary for more details on what is happening
+
+// We use a function to create the router so that we can create multiple instances of it
+// without each router instance sharing the same state
 export function makeRouter(): Router {
   const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),

@@ -3,6 +3,9 @@
 <script>
 import { myQNavEventName } from '@/shared/eventBus';
 
+/**
+ * The host listener listens to events from the clients.
+ */
 export default {
   data() {
     return {};
@@ -27,11 +30,9 @@ export default {
   },
   mounted() {
     window.eventBus?.subscribe(myQNavEventName, this.onNavChange);
-    // window.addEventListener(myQNavEventName, this.onNavChange);
   },
   beforeDestroy() {
     window.eventBus?.unsubscribe(myQNavEventName, this.onNavChange);
-    // window.removeEventListener(myQNavEventName, this.onNavChange);
   },
 };
 </script>

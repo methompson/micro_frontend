@@ -3,6 +3,11 @@ import { resolve } from 'path';
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 
+/**
+ * We use build.lib in our Vite config to export the application as an ES Module.
+ * The host application can load the application using a dynamic import.
+ */
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue()],

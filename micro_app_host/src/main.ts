@@ -6,6 +6,7 @@ import { EventBus } from './shared/eventBus';
 
 Vue.config.productionTip = false;
 
+// We define an event bus on the window object so that we can access it from anywhere in the application.
 declare global {
   interface Window {
     eventBus?: EventBus;

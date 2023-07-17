@@ -7,6 +7,10 @@ Vue.use(VueRouter);
 
 export const routePrefix = '/microAppOne';
 
+/**
+ * Each route is prefixed with the routePrefix. This essentially namespaces the routes
+ * so that they don't conflict with the host application's routes.
+ */
 const routes: Array<RouteConfig> = [
   {
     path: `${routePrefix}/`,
@@ -44,11 +48,12 @@ const router = new VueRouter({
   routes,
 });
 
-// router.beforeEach((to, from, next) => {
-//   // console.log('Route has changed', to, from);
-//   next();
-// });
-
+/**
+ * This is a global after hook that will be called after every route change.
+ * It will emit an event to the eventBus that will be picked up by the host application and
+ * all other client applications. This is how we will keep the navigation in sync between
+ * all of the applications.
+ */
 router.afterEach((to, from) => {
   window.eventBus?.emit(myQNavEventName, {
     fullPath: to.fullPath,

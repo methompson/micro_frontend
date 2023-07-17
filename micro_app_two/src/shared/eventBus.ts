@@ -4,6 +4,8 @@ export type eventHandler = (
   payload?: Record<string, unknown>,
 ) => unknown | Promise<unknown>;
 
+// Review the commentary in the EventBus in micro_app_one to understand what is happening here.
+
 export class EventBus {
   protected actions: Record<string, eventHandler[]> = {};
 

@@ -1,1 +1,1 @@
-declare module 'http://localhost:8000/microAppTwo.js' {}
+// declare module 'http://localhost:8000/microAppTwo.js' {}

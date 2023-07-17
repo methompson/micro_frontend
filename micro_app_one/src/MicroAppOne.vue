@@ -24,6 +24,10 @@ import { mapActions } from 'vuex';
 import HostListener from '@/components/HostListener.vue';
 import { routePrefix } from './router';
 
+// We 'namespace' our application by using the routePrefix. This allows us to
+// route directly to this application without having to worry about conflicting
+// routes with the host application.
+
 export default {
   name: 'MicroAppOne',
   components: {
@@ -36,12 +40,16 @@ export default {
   },
   methods: {
     ...mapActions([
-      'getAppDataFromLocalStorage',
+      'getHostDataFromLocalStorage',
       'getMicroAppDataFromLocalStorage',
     ]),
   },
   created() {
-    this.getAppDataFromLocalStorage();
+    // on creation, we get data from the local storage from the host app.
+    // we also get the data for this micro app from the local storage.
+    // This allows the user to navigate away from this application and come back
+    // without losing their data or progress.
+    this.getHostDataFromLocalStorage();
     this.getMicroAppDataFromLocalStorage();
   },
 };

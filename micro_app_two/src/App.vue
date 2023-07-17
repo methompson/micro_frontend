@@ -10,6 +10,8 @@ const route = computed(() => routePrefix);
 
 const appOn = ref(true);
 
+// This sets appOn to false. The idea was that this trigger's the unmount lifecycle
+// function in child components. I'm not sure if this is required or not
 onBeforeUnmount(() => {
   appOn.value = false;
 });

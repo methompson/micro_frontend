@@ -6,6 +6,16 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const port = 8081;
 
+/**
+ * MicroAppOne utilizes WebPack's library export feature to expose a single
+ * global variable to the window object. This variable is then used to
+ * bootstrap the application.
+ *
+ * library is the name of the global variable that will be exposed to the
+ * window object. libraryTarget is the type of export. libraryExport is the
+ * name of the export.
+ */
+
 module.exports = {
   mode: 'development',
   cache: false,

@@ -3,6 +3,8 @@
 <script>
 import { myQNavEventName } from '@/shared/eventBus';
 
+// Look at micro_app_one's HostListener commentary to understand this component.
+
 export default {
   data() {
     return {};
