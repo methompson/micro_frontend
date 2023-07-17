@@ -10,7 +10,7 @@
       <router-link :to="`${routePrefix}/badLink`">Bad Link</router-link>
     </nav>
 
-    Micro One!
+    Micro Application One (using Vue 2)!
 
     <router-view />
 

@@ -1003,7 +1003,7 @@ function wr(e, t) {
   else {
     const n = e.get(t);
     if (n > Cc) {
-      const o = t.ownerInstance, r = o && Ys(o.type);
+      const o = t.ownerInstance, r = o && Gs(o.type);
       return w(
         `Maximum recursive updates exceeded${r ? ` in component <${r}>` : ""}. This means you have a reactive effect that is mutating its own dependencies and thus recursively triggering itself. Possible sources include component template, render function, updated hook or watcher source function.`
       ), !0;
@@ -1034,7 +1034,7 @@ function Es(e, t) {
   }), !0);
 }
 function hn(e) {
-  return Gs(e) ? e.__vccOpts : e;
+  return Js(e) ? e.__vccOpts : e;
 }
 function Rc(e, t) {
   const n = zt.get(e);
@@ -1470,7 +1470,7 @@ function xr(e, t, { immediate: n, deep: o, flush: r, onTrack: i, onTrigger: s } 
       h ? [] : void 0,
       x
     ]) : u(), r === "sync") {
-      const M = nu();
+      const M = tu();
       T = M.__watcherHandles || (M.__watcherHandles = []);
     } else
       return he;
@@ -3578,7 +3578,7 @@ function Us(e, t = null, n = null, o = 0, r = null, i = !1) {
     );
     return n && Sr(l, n), xn > 0 && !i && Fe && (l.shapeFlag & 6 ? Fe[Fe.indexOf(e)] = l : Fe.push(l)), l.patchFlag |= -2, l;
   }
-  if (Gs(e) && (e = e.__vccOpts), t) {
+  if (Js(e) && (e = e.__vccOpts), t) {
     t = Fa(t);
     let { class: l, style: c } = t;
     l && !se(l) && (t.class = gr(l)), ee(c) && (Ho(c) && !k(c) && (c = ie({}, c)), t.style = mr(c));
@@ -3833,14 +3833,14 @@ function Ga(e, t) {
       for (let s = 0; s < i.length; s++)
         $s(i[s]);
     }
-    o.compilerOptions && Ja() && w(
+    o.compilerOptions && qs() && w(
       '"compilerOptions" is only supported when using a build of Vue that includes the runtime compiler. Since you are using a runtime-only build, the options should be passed via your build tool config instead.'
     );
   }
   e.accessCache = /* @__PURE__ */ Object.create(null), e.proxy = _o(new Proxy(e.ctx, Ps)), {}.NODE_ENV !== "production" && pa(e);
   const { setup: r } = o;
   if (r) {
-    const i = e.setupContext = r.length > 1 ? Xa(e) : null;
+    const i = e.setupContext = r.length > 1 ? Qa(e) : null;
     en(e), Lt();
     const s = rt(
       r,
@@ -3864,18 +3864,18 @@ function Ga(e, t) {
     } else
       ui(e, s, t);
   } else
-    qs(e, t);
+    Ys(e, t);
 }
 function ui(e, t, n) {
   L(t) ? e.type.__ssrInlineRender ? e.ssrRender = t : e.render = t : ee(t) ? ({}.NODE_ENV !== "production" && Zt(t) && w(
     "setup() should not return VNodes directly - return a render function instead."
   ), {}.NODE_ENV !== "production" && (e.devtoolsRawSetupState = t), e.setupState = us(t), {}.NODE_ENV !== "production" && ha(e)) : {}.NODE_ENV !== "production" && t !== void 0 && w(
     `setup() should return an object. Received: ${t === null ? "null" : typeof t}`
-  ), qs(e, n);
+  ), Ys(e, n);
 }
 let Xo;
-const Ja = () => !Xo;
-function qs(e, t, n) {
+const qs = () => !Xo;
+function Ys(e, t, n) {
   const o = e.type;
   if (!e.render) {
     if (!t && Xo && !o.render) {
@@ -3922,14 +3922,14 @@ function fi(e) {
     }
   ));
 }
-function Qa(e) {
+function Ja(e) {
   return e.slotsProxy || (e.slotsProxy = new Proxy(e.slots, {
     get(t, n) {
       return ge(e, "get", "$slots"), t[n];
     }
   }));
 }
-function Xa(e) {
+function Qa(e) {
   const t = (n) => {
     if ({}.NODE_ENV !== "production" && (e.exposed && w("expose() should be called only once per setup()."), n != null)) {
       let o = typeof n;
@@ -3944,7 +3944,7 @@ function Xa(e) {
       return fi(e);
     },
     get slots() {
-      return Qa(e);
+      return Ja(e);
     },
     get emit() {
       return (n, ...o) => e.emit(n, ...o);
@@ -3973,12 +3973,12 @@ function Pr(e) {
       }
     }));
 }
-const Za = /(?:^|[-_])(\w)/g, eu = (e) => e.replace(Za, (t) => t.toUpperCase()).replace(/[-_]/g, "");
-function Ys(e, t = !0) {
+const Xa = /(?:^|[-_])(\w)/g, Za = (e) => e.replace(Xa, (t) => t.toUpperCase()).replace(/[-_]/g, "");
+function Gs(e, t = !0) {
   return L(e) ? e.displayName || e.name : e.name || t && e.__name;
 }
 function Oo(e, t, n = !1) {
-  let o = Ys(t);
+  let o = Gs(t);
   if (!o && t.__file) {
     const r = t.__file.match(/([^/\\]+)\.\w+$/);
     r && (o = r[1]);
@@ -3993,19 +3993,19 @@ function Oo(e, t, n = !1) {
       e.components || e.parent.type.components
     ) || r(e.appContext.components);
   }
-  return o ? eu(o) : n ? "App" : "Anonymous";
+  return o ? Za(o) : n ? "App" : "Anonymous";
 }
-function Gs(e) {
+function Js(e) {
   return L(e) && "__vccOpts" in e;
 }
 const Re = (e, t) => Nc(e, t, Dn);
-function Js(e, t, n) {
+function Qs(e, t, n) {
   const o = arguments.length;
   return o === 2 ? ee(t) && !k(t) ? Zt(t) ? X(e, null, [t]) : X(e, t) : X(e, null, t) : (o > 3 ? n = Array.prototype.slice.call(arguments, 2) : o === 3 && Zt(n) && (n = [n]), X(e, t, n));
 }
-const tu = Symbol.for("v-scx"), nu = () => {
+const eu = Symbol.for("v-scx"), tu = () => {
   {
-    const e = it(tu);
+    const e = it(eu);
     return e || {}.NODE_ENV !== "production" && w(
       "Server rendering context not provided. Make sure to only call useSSRContext() conditionally in the server build."
     ), e;
@@ -4014,7 +4014,7 @@ const tu = Symbol.for("v-scx"), nu = () => {
 function So(e) {
   return !!(e && e.__v_isShallow);
 }
-function ou() {
+function nu() {
   if ({}.NODE_ENV === "production" || typeof window > "u")
     return;
   const e = { style: "color:#3ba776" }, t = { style: "color:#0b1bc9" }, n = { style: "color:#b62e24" }, o = { style: "color:#9d288c" }, r = {
@@ -4120,7 +4120,7 @@ function ou() {
   }
   window.devtoolsFormatters ? window.devtoolsFormatters.push(r) : window.devtoolsFormatters = [r];
 }
-const di = "3.3.4", ru = "http://www.w3.org/2000/svg", St = typeof document < "u" ? document : null, pi = St && /* @__PURE__ */ St.createElement("template"), iu = {
+const di = "3.3.4", ou = "http://www.w3.org/2000/svg", St = typeof document < "u" ? document : null, pi = St && /* @__PURE__ */ St.createElement("template"), ru = {
   insert: (e, t, n) => {
     t.insertBefore(e, n || null);
   },
@@ -4129,7 +4129,7 @@ const di = "3.3.4", ru = "http://www.w3.org/2000/svg", St = typeof document < "u
     t && t.removeChild(e);
   },
   createElement: (e, t, n, o) => {
-    const r = t ? St.createElementNS(ru, e) : St.createElement(e, n ? { is: n } : void 0);
+    const r = t ? St.createElementNS(ou, e) : St.createElement(e, n ? { is: n } : void 0);
     return e === "select" && o && o.multiple != null && r.setAttribute("multiple", o.multiple), r;
   },
   createText: (e) => St.createTextNode(e),
@@ -4174,11 +4174,11 @@ const di = "3.3.4", ru = "http://www.w3.org/2000/svg", St = typeof document < "u
     ];
   }
 };
-function su(e, t, n) {
+function iu(e, t, n) {
   const o = e._vtc;
   o && (t = (t ? [t, ...o] : [...o]).join(" ")), t == null ? e.removeAttribute("class") : n ? e.setAttribute("class", t) : e.className = t;
 }
-function lu(e, t, n) {
+function su(e, t, n) {
   const o = e.style, r = se(n);
   if (n && !r) {
     if (t && !se(t))
@@ -4191,16 +4191,16 @@ function lu(e, t, n) {
     r ? t !== n && (o.cssText = n) : t && e.removeAttribute("style"), "_vod" in e && (o.display = i);
   }
 }
-const cu = /[^\\];\s*$/, hi = /\s*!important$/;
+const lu = /[^\\];\s*$/, hi = /\s*!important$/;
 function Zo(e, t, n) {
   if (k(n))
     n.forEach((o) => Zo(e, t, o));
-  else if (n == null && (n = ""), {}.NODE_ENV !== "production" && cu.test(n) && w(
+  else if (n == null && (n = ""), {}.NODE_ENV !== "production" && lu.test(n) && w(
     `Unexpected semicolon at the end of '${t}' style value: '${n}'`
   ), t.startsWith("--"))
     e.setProperty(t, n);
   else {
-    const o = au(e, t);
+    const o = cu(e, t);
     hi.test(n) ? e.setProperty(
       vt(o),
       n.replace(hi, ""),
@@ -4209,7 +4209,7 @@ function Zo(e, t, n) {
   }
 }
 const mi = ["Webkit", "Moz", "ms"], Io = {};
-function au(e, t) {
+function cu(e, t) {
   const n = Io[t];
   if (n)
     return n;
@@ -4225,7 +4225,7 @@ function au(e, t) {
   return t;
 }
 const gi = "http://www.w3.org/1999/xlink";
-function uu(e, t, n, o, r) {
+function au(e, t, n, o, r) {
   if (o && t.startsWith("xlink:"))
     n == null ? e.removeAttributeNS(gi, t.slice(6, t.length)) : e.setAttributeNS(gi, t, n);
   else {
@@ -4233,7 +4233,7 @@ function uu(e, t, n, o, r) {
     n == null || i && !Bi(n) ? e.removeAttribute(t) : e.setAttribute(t, i ? "" : n);
   }
 }
-function fu(e, t, n, o, r, i, s) {
+function uu(e, t, n, o, r, i, s) {
   if (t === "innerHTML" || t === "textContent") {
     o && s(o, r, i), e[t] = n ?? "";
     return;
@@ -4261,27 +4261,27 @@ function fu(e, t, n, o, r, i, s) {
   }
   c && e.removeAttribute(t);
 }
-function du(e, t, n, o) {
+function fu(e, t, n, o) {
   e.addEventListener(t, n, o);
 }
-function pu(e, t, n, o) {
+function du(e, t, n, o) {
   e.removeEventListener(t, n, o);
 }
-function hu(e, t, n, o, r = null) {
+function pu(e, t, n, o, r = null) {
   const i = e._vei || (e._vei = {}), s = i[t];
   if (o && s)
     s.value = o;
   else {
-    const [l, c] = mu(t);
+    const [l, c] = hu(t);
     if (o) {
-      const f = i[t] = Eu(o, r);
-      du(e, l, f, c);
+      const f = i[t] = _u(o, r);
+      fu(e, l, f, c);
     } else
-      s && (pu(e, l, s, c), i[t] = void 0);
+      s && (du(e, l, s, c), i[t] = void 0);
   }
 }
 const _i = /(?:Once|Passive|Capture)$/;
-function mu(e) {
+function hu(e) {
   let t;
   if (_i.test(e)) {
     t = {};
@@ -4292,23 +4292,23 @@ function mu(e) {
   return [e[2] === ":" ? e.slice(3) : vt(e.slice(2)), t];
 }
 let Po = 0;
-const gu = /* @__PURE__ */ Promise.resolve(), _u = () => Po || (gu.then(() => Po = 0), Po = Date.now());
-function Eu(e, t) {
+const mu = /* @__PURE__ */ Promise.resolve(), gu = () => Po || (mu.then(() => Po = 0), Po = Date.now());
+function _u(e, t) {
   const n = (o) => {
     if (!o._vts)
       o._vts = Date.now();
     else if (o._vts <= n.attached)
       return;
     Ue(
-      vu(o, n.value),
+      Eu(o, n.value),
       t,
       5,
       [o]
     );
   };
-  return n.value = e, n.attached = _u(), n;
+  return n.value = e, n.attached = gu(), n;
 }
-function vu(e, t) {
+function Eu(e, t) {
   if (k(t)) {
     const n = e.stopImmediatePropagation;
     return e.stopImmediatePropagation = () => {
@@ -4317,8 +4317,8 @@ function vu(e, t) {
   } else
     return t;
 }
-const Ei = /^on[a-z]/, yu = (e, t, n, o, r = !1, i, s, l, c) => {
-  t === "class" ? su(e, o, r) : t === "style" ? lu(e, n, o) : Vn(t) ? Xn(t) || hu(e, t, n, o, s) : (t[0] === "." ? (t = t.slice(1), !0) : t[0] === "^" ? (t = t.slice(1), !1) : bu(e, t, o, r)) ? fu(
+const Ei = /^on[a-z]/, vu = (e, t, n, o, r = !1, i, s, l, c) => {
+  t === "class" ? iu(e, o, r) : t === "style" ? su(e, n, o) : Vn(t) ? Xn(t) || pu(e, t, n, o, s) : (t[0] === "." ? (t = t.slice(1), !0) : t[0] === "^" ? (t = t.slice(1), !1) : yu(e, t, o, r)) ? uu(
     e,
     t,
     o,
@@ -4326,22 +4326,22 @@ const Ei = /^on[a-z]/, yu = (e, t, n, o, r = !1, i, s, l, c) => {
     s,
     l,
     c
-  ) : (t === "true-value" ? e._trueValue = o : t === "false-value" && (e._falseValue = o), uu(e, t, o, r));
+  ) : (t === "true-value" ? e._trueValue = o : t === "false-value" && (e._falseValue = o), au(e, t, o, r));
 };
-function bu(e, t, n, o) {
+function yu(e, t, n, o) {
   return o ? !!(t === "innerHTML" || t === "textContent" || t in e && Ei.test(t) && L(n)) : t === "spellcheck" || t === "draggable" || t === "translate" || t === "form" || t === "list" && e.tagName === "INPUT" || t === "type" && e.tagName === "TEXTAREA" || Ei.test(t) && se(n) ? !1 : t in e;
 }
-const Nu = /* @__PURE__ */ ie({ patchProp: yu }, iu);
+const bu = /* @__PURE__ */ ie({ patchProp: vu }, ru);
 let vi;
-function wu() {
-  return vi || (vi = Aa(Nu));
+function Nu() {
+  return vi || (vi = Aa(bu));
 }
-const Ou = (...e) => {
-  const t = wu().createApp(...e);
-  ({}).NODE_ENV !== "production" && (xu(t), Du(t));
+const wu = (...e) => {
+  const t = Nu().createApp(...e);
+  ({}).NODE_ENV !== "production" && (Ou(t), xu(t));
   const { mount: n } = t;
   return t.mount = (o) => {
-    const r = $u(o);
+    const r = Du(o);
     if (!r)
       return;
     const i = t._component;
@@ -4350,14 +4350,14 @@ const Ou = (...e) => {
     return r instanceof Element && (r.removeAttribute("v-cloak"), r.setAttribute("data-v-app", "")), s;
   }, t;
 };
-function xu(e) {
+function Ou(e) {
   Object.defineProperty(e.config, "isNativeTag", {
     value: (t) => kl(t) || jl(t),
     writable: !1
   });
 }
-function Du(e) {
-  {
+function xu(e) {
+  if (qs()) {
     const t = e.config.isCustomElement;
     Object.defineProperty(e.config, "isCustomElement", {
       get() {
@@ -4380,7 +4380,7 @@ function Du(e) {
     });
   }
 }
-function $u(e) {
+function Du(e) {
   if (se(e)) {
     const t = document.querySelector(e);
     return {}.NODE_ENV !== "production" && !t && w(
@@ -4391,27 +4391,27 @@ function $u(e) {
     'mounting on a ShadowRoot with `{mode: "closed"}` may lead to unpredictable bugs'
   ), e;
 }
-function Cu() {
-  ou();
+function $u() {
+  nu();
 }
-({}).NODE_ENV !== "production" && Cu();
-var Vu = !1;
-function Su() {
-  return Qs().__VUE_DEVTOOLS_GLOBAL_HOOK__;
+({}).NODE_ENV !== "production" && $u();
+var Cu = !1;
+function Vu() {
+  return Xs().__VUE_DEVTOOLS_GLOBAL_HOOK__;
 }
-function Qs() {
+function Xs() {
   return typeof navigator < "u" && typeof window < "u" ? window : typeof global < "u" ? global : {};
 }
-const Iu = typeof Proxy == "function", Pu = "devtools-plugin:setup", Tu = "plugin:settings:set";
+const Su = typeof Proxy == "function", Iu = "devtools-plugin:setup", Pu = "plugin:settings:set";
 let Bt, er;
-function Ru() {
+function Tu() {
   var e;
   return Bt !== void 0 || (typeof window < "u" && window.performance ? (Bt = !0, er = window.performance) : typeof global < "u" && (!((e = global.perf_hooks) === null || e === void 0) && e.performance) ? (Bt = !0, er = global.perf_hooks.performance) : Bt = !1), Bt;
 }
-function Au() {
-  return Ru() ? er.now() : Date.now();
+function Ru() {
+  return Tu() ? er.now() : Date.now();
 }
-class Mu {
+class Au {
   constructor(t, n) {
     this.target = null, this.targetQueue = [], this.onQueue = [], this.plugin = t, this.hook = n;
     const o = {};
@@ -4439,9 +4439,9 @@ class Mu {
         i = s;
       },
       now() {
-        return Au();
+        return Ru();
       }
-    }, n && n.on(Tu, (s, l) => {
+    }, n && n.on(Pu, (s, l) => {
       s === this.plugin.id && this.fallbacks.setSettings(l);
     }), this.proxiedOn = new Proxy({}, {
       get: (s, l) => this.target ? this.target.on[l] : (...c) => {
@@ -4474,11 +4474,11 @@ class Mu {
   }
 }
 function Tr(e, t) {
-  const n = e, o = Qs(), r = Su(), i = Iu && n.enableEarlyProxy;
+  const n = e, o = Xs(), r = Vu(), i = Su && n.enableEarlyProxy;
   if (r && (o.__VUE_DEVTOOLS_PLUGIN_API_AVAILABLE__ || !i))
-    r.emit(Pu, e, t);
+    r.emit(Iu, e, t);
   else {
-    const s = i ? new Mu(n, r) : null;
+    const s = i ? new Au(n, r) : null;
     (o.__VUE_DEVTOOLS_PLUGINS__ = o.__VUE_DEVTOOLS_PLUGINS__ || []).push({
       pluginDescriptor: n,
       setupFn: t,
@@ -4491,7 +4491,7 @@ function Tr(e, t) {
   * (c) 2023 Eduardo San Martin Morote
   * @license MIT
   */
-const ku = {}.NODE_ENV !== "production" ? Symbol("pinia") : (
+const Mu = {}.NODE_ENV !== "production" ? Symbol("pinia") : (
   /* istanbul ignore next */
   Symbol()
 );
@@ -4499,19 +4499,19 @@ var jt;
 (function(e) {
   e.direct = "direct", e.patchObject = "patch object", e.patchFunction = "patch function";
 })(jt || (jt = {}));
-const Xs = typeof window < "u", yi = ({}.NODE_ENV !== "production" || !1) && {}.NODE_ENV !== "test" && Xs, bi = /* @__PURE__ */ (() => typeof window == "object" && window.window === window ? window : typeof self == "object" && self.self === self ? self : typeof global == "object" && global.global === global ? global : typeof globalThis == "object" ? globalThis : { HTMLElement: null })();
-function ju(e, { autoBom: t = !1 } = {}) {
+const Zs = typeof window < "u", yi = ({}.NODE_ENV !== "production" || !1) && {}.NODE_ENV !== "test" && Zs, bi = /* @__PURE__ */ (() => typeof window == "object" && window.window === window ? window : typeof self == "object" && self.self === self ? self : typeof global == "object" && global.global === global ? global : typeof globalThis == "object" ? globalThis : { HTMLElement: null })();
+function ku(e, { autoBom: t = !1 } = {}) {
   return t && /^\s*(?:text\/\S*|application\/xml|\S*\/\S*\+xml)\s*;.*charset\s*=\s*utf-8/i.test(e.type) ? new Blob([String.fromCharCode(65279), e], { type: e.type }) : e;
 }
 function Rr(e, t, n) {
   const o = new XMLHttpRequest();
   o.open("GET", e), o.responseType = "blob", o.onload = function() {
-    tl(o.response, t, n);
+    nl(o.response, t, n);
   }, o.onerror = function() {
     console.error("could not download file");
   }, o.send();
 }
-function Zs(e) {
+function el(e) {
   const t = new XMLHttpRequest();
   t.open("HEAD", e, !1);
   try {
@@ -4528,28 +4528,28 @@ function Gn(e) {
     n.initMouseEvent("click", !0, !0, window, 0, 0, 0, 80, 20, !1, !1, !1, !1, 0, null), e.dispatchEvent(n);
   }
 }
-const Jn = typeof navigator == "object" ? navigator : { userAgent: "" }, el = /* @__PURE__ */ (() => /Macintosh/.test(Jn.userAgent) && /AppleWebKit/.test(Jn.userAgent) && !/Safari/.test(Jn.userAgent))(), tl = Xs ? (
+const Jn = typeof navigator == "object" ? navigator : { userAgent: "" }, tl = /* @__PURE__ */ (() => /Macintosh/.test(Jn.userAgent) && /AppleWebKit/.test(Jn.userAgent) && !/Safari/.test(Jn.userAgent))(), nl = Zs ? (
   // Use download attribute first if possible (#193 Lumia mobile) unless this is a macOS WebView or mini program
-  typeof HTMLAnchorElement < "u" && "download" in HTMLAnchorElement.prototype && !el ? zu : (
+  typeof HTMLAnchorElement < "u" && "download" in HTMLAnchorElement.prototype && !tl ? ju : (
     // Use msSaveOrOpenBlob as a second approach
-    "msSaveOrOpenBlob" in Jn ? Lu : (
+    "msSaveOrOpenBlob" in Jn ? zu : (
       // Fallback to using FileReader and a popup
-      Hu
+      Lu
     )
   )
 ) : () => {
 };
-function zu(e, t = "download", n) {
+function ju(e, t = "download", n) {
   const o = document.createElement("a");
-  o.download = t, o.rel = "noopener", typeof e == "string" ? (o.href = e, o.origin !== location.origin ? Zs(o.href) ? Rr(e, t, n) : (o.target = "_blank", Gn(o)) : Gn(o)) : (o.href = URL.createObjectURL(e), setTimeout(function() {
+  o.download = t, o.rel = "noopener", typeof e == "string" ? (o.href = e, o.origin !== location.origin ? el(o.href) ? Rr(e, t, n) : (o.target = "_blank", Gn(o)) : Gn(o)) : (o.href = URL.createObjectURL(e), setTimeout(function() {
     URL.revokeObjectURL(o.href);
   }, 4e4), setTimeout(function() {
     Gn(o);
   }, 0));
 }
-function Lu(e, t = "download", n) {
+function zu(e, t = "download", n) {
   if (typeof e == "string")
-    if (Zs(e))
+    if (el(e))
       Rr(e, t, n);
     else {
       const o = document.createElement("a");
@@ -4558,13 +4558,13 @@ function Lu(e, t = "download", n) {
       });
     }
   else
-    navigator.msSaveOrOpenBlob(ju(e, n), t);
+    navigator.msSaveOrOpenBlob(ku(e, n), t);
 }
-function Hu(e, t, n, o) {
+function Lu(e, t, n, o) {
   if (o = o || open("", "_blank"), o && (o.document.title = o.document.body.innerText = "downloading..."), typeof e == "string")
     return Rr(e, t, n);
   const r = e.type === "application/octet-stream", i = /constructor/i.test(String(bi.HTMLElement)) || "safari" in bi, s = /CriOS\/[\d]+/.test(navigator.userAgent);
-  if ((s || r && i || el) && typeof FileReader < "u") {
+  if ((s || r && i || tl) && typeof FileReader < "u") {
     const l = new FileReader();
     l.onloadend = function() {
       let c = l.result;
@@ -4586,36 +4586,36 @@ function ue(e, t) {
 function Ar(e) {
   return "_a" in e && "install" in e;
 }
-function nl() {
+function ol() {
   if (!("clipboard" in navigator))
     return ue("Your browser doesn't support the Clipboard API", "error"), !0;
 }
-function ol(e) {
+function rl(e) {
   return e instanceof Error && e.message.toLowerCase().includes("document is not focused") ? (ue('You need to activate the "Emulate a focused page" setting in the "Rendering" panel of devtools.', "warn"), !0) : !1;
 }
-async function Fu(e) {
-  if (!nl())
+async function Hu(e) {
+  if (!ol())
     try {
       await navigator.clipboard.writeText(JSON.stringify(e.state.value)), ue("Global state copied to clipboard.");
     } catch (t) {
-      if (ol(t))
+      if (rl(t))
         return;
       ue("Failed to serialize the state. Check the console for more details.", "error"), console.error(t);
     }
 }
-async function Uu(e) {
-  if (!nl())
+async function Fu(e) {
+  if (!ol())
     try {
       e.state.value = JSON.parse(await navigator.clipboard.readText()), ue("Global state pasted from clipboard.");
     } catch (t) {
-      if (ol(t))
+      if (rl(t))
         return;
       ue("Failed to deserialize the state from clipboard. Check the console for more details.", "error"), console.error(t);
     }
 }
-async function Bu(e) {
+async function Uu(e) {
   try {
-    tl(new Blob([JSON.stringify(e.state.value)], {
+    nl(new Blob([JSON.stringify(e.state.value)], {
       type: "text/plain;charset=utf-8"
     }), "pinia-state.json");
   } catch (t) {
@@ -4623,7 +4623,7 @@ async function Bu(e) {
   }
 }
 let Ze;
-function Ku() {
+function Bu() {
   Ze || (Ze = document.createElement("input"), Ze.type = "file", Ze.accept = ".json");
   function e() {
     return new Promise((t, n) => {
@@ -4638,9 +4638,9 @@ function Ku() {
   }
   return e;
 }
-async function Wu(e) {
+async function Ku(e) {
   try {
-    const n = await (await Ku())();
+    const n = await (await Bu())();
     if (!n)
       return;
     const { text: o, file: r } = n;
@@ -4656,17 +4656,17 @@ function Le(e) {
     }
   };
 }
-const rl = "🍍 Pinia (root)", tr = "_root";
-function qu(e) {
+const il = "🍍 Pinia (root)", tr = "_root";
+function Wu(e) {
   return Ar(e) ? {
     id: tr,
-    label: rl
+    label: il
   } : {
     id: e.$id,
     label: e.$id
   };
 }
-function Yu(e) {
+function qu(e) {
   if (Ar(e)) {
     const n = Array.from(e._s.keys()), o = e._s;
     return {
@@ -4702,7 +4702,7 @@ function Yu(e) {
     value: e[n]
   }))), t;
 }
-function Gu(e) {
+function Yu(e) {
   return e ? Array.isArray(e) ? e.reduce((t, n) => (t.keys.push(n.key), t.operations.push(n.type), t.oldValue[n.key] = n.oldValue, t.newValue[n.key] = n.newValue, t), {
     oldValue: {},
     keys: [],
@@ -4715,7 +4715,7 @@ function Gu(e) {
     newValue: e.newValue
   } : {};
 }
-function Ju(e) {
+function Gu(e) {
   switch (e) {
     case jt.direct:
       return "mutation";
@@ -4728,8 +4728,8 @@ function Ju(e) {
   }
 }
 let Yt = !0;
-const Qn = [], Vt = "pinia:mutations", _e = "pinia", { assign: Qu } = Object, lo = (e) => "🍍 " + e;
-function Xu(e, t) {
+const Qn = [], Vt = "pinia:mutations", _e = "pinia", { assign: Ju } = Object, lo = (e) => "🍍 " + e;
+function Qu(e, t) {
   Tr({
     id: "dev.esm.pinia",
     label: "Pinia 🍍",
@@ -4752,28 +4752,28 @@ function Xu(e, t) {
         {
           icon: "content_copy",
           action: () => {
-            Fu(t);
+            Hu(t);
           },
           tooltip: "Serialize and copy the state"
         },
         {
           icon: "content_paste",
           action: async () => {
-            await Uu(t), n.sendInspectorTree(_e), n.sendInspectorState(_e);
+            await Fu(t), n.sendInspectorTree(_e), n.sendInspectorState(_e);
           },
           tooltip: "Replace the state with the content of your clipboard"
         },
         {
           icon: "save",
           action: () => {
-            Bu(t);
+            Uu(t);
           },
           tooltip: "Save the state as a JSON file"
         },
         {
           icon: "folder_open",
           action: async () => {
-            await Wu(t), n.sendInspectorTree(_e), n.sendInspectorState(_e);
+            await Ku(t), n.sendInspectorTree(_e), n.sendInspectorState(_e);
           },
           tooltip: "Import the state from a JSON file"
         }
@@ -4830,14 +4830,14 @@ function Xu(e, t) {
     }), n.on.getInspectorTree((o) => {
       if (o.app === e && o.inspectorId === _e) {
         let r = [t];
-        r = r.concat(Array.from(t._s.values())), o.rootNodes = (o.filter ? r.filter((i) => "$id" in i ? i.$id.toLowerCase().includes(o.filter.toLowerCase()) : rl.toLowerCase().includes(o.filter.toLowerCase())) : r).map(qu);
+        r = r.concat(Array.from(t._s.values())), o.rootNodes = (o.filter ? r.filter((i) => "$id" in i ? i.$id.toLowerCase().includes(o.filter.toLowerCase()) : il.toLowerCase().includes(o.filter.toLowerCase())) : r).map(Wu);
       }
     }), n.on.getInspectorState((o) => {
       if (o.app === e && o.inspectorId === _e) {
         const r = o.nodeId === tr ? t : t._s.get(o.nodeId);
         if (!r)
           return;
-        r && (o.state = Yu(r));
+        r && (o.state = qu(r));
       }
     }), n.on.editInspectorState((o, r) => {
       if (o.app === e && o.inspectorId === _e) {
@@ -4862,7 +4862,7 @@ Only state can be modified.`);
     });
   });
 }
-function Zu(e, t) {
+function Xu(e, t) {
   Qn.includes(lo(t.$id)) || Qn.push(lo(t.$id)), Tr({
     id: "dev.esm.pinia",
     label: "Pinia 🍍",
@@ -4886,7 +4886,7 @@ function Zu(e, t) {
   }, (n) => {
     const o = typeof n.now == "function" ? n.now.bind(n) : Date.now;
     t.$onAction(({ after: s, onError: l, name: c, args: f }) => {
-      const u = il++;
+      const u = sl++;
       n.addTimelineEvent({
         layerId: Vt,
         event: {
@@ -4955,8 +4955,8 @@ function Zu(e, t) {
         return;
       const f = {
         time: o(),
-        title: Ju(l),
-        data: Qu({ store: Le(t.$id) }, Gu(s)),
+        title: Gu(l),
+        data: Ju({ store: Le(t.$id) }, Yu(s)),
         groupId: _t
       };
       l === jt.patchFunction ? f.subtitle = "⤵️" : l === jt.patchObject ? f.subtitle = "🧩" : s && !Array.isArray(s) && (f.subtitle = s.type), s && (f.data["rawEvent(s)"] = {
@@ -4992,12 +4992,12 @@ function Zu(e, t) {
     }, n.notifyComponentUpdate(), n.sendInspectorTree(_e), n.sendInspectorState(_e), n.getSettings().logStoreChanges && ue(`"${t.$id}" store installed 🆕`);
   });
 }
-let il = 0, _t;
+let sl = 0, _t;
 function Ni(e, t, n) {
   const o = t.reduce((r, i) => (r[i] = F(e)[i], r), {});
   for (const r in o)
     e[r] = function() {
-      const i = il, s = n ? new Proxy(e, {
+      const i = sl, s = n ? new Proxy(e, {
         get(...c) {
           return _t = i, Reflect.get(...c);
         },
@@ -5010,28 +5010,28 @@ function Ni(e, t, n) {
       return _t = void 0, l;
     };
 }
-function ef({ app: e, store: t, options: n }) {
+function Zu({ app: e, store: t, options: n }) {
   if (t.$id.startsWith("__hot:"))
     return;
   t._isOptionsAPI = !!n.state, Ni(t, Object.keys(n.actions), t._isOptionsAPI);
   const o = t._hotUpdate;
   F(t)._hotUpdate = function(r) {
     o.apply(this, arguments), Ni(t, Object.keys(r._hmrPayload.actions), !!t._isOptionsAPI);
-  }, Zu(
+  }, Xu(
     e,
     // FIXME: is there a way to allow the assignment from Store<Id, S, G, A> to StoreGeneric?
     t
   );
 }
-function tf() {
+function ef() {
   const e = Fl(!0), t = e.run(() => yr({}));
   let n = [], o = [];
   const r = _o({
     install(i) {
-      r._a = i, i.provide(ku, r), i.config.globalProperties.$pinia = r, yi && Xu(i, r), o.forEach((s) => n.push(s)), o = [];
+      r._a = i, i.provide(Mu, r), i.config.globalProperties.$pinia = r, yi && Qu(i, r), o.forEach((s) => n.push(s)), o = [];
     },
     use(i) {
-      return !this._a && !Vu ? o.push(i) : n.push(i), this;
+      return !this._a && !Cu ? o.push(i) : n.push(i), this;
     },
     _p: n,
     // it's actually undefined here
@@ -5041,16 +5041,16 @@ function tf() {
     _s: /* @__PURE__ */ new Map(),
     state: t
   });
-  return yi && typeof Proxy < "u" && r.use(ef), r;
+  return yi && typeof Proxy < "u" && r.use(Zu), r;
 }
-const nf = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNjEuNzYgMjI2LjY5Ij48cGF0aCBkPSJNMTYxLjA5Ni4wMDFsLTMwLjIyNSA1Mi4zNTFMMTAwLjY0Ny4wMDFILS4wMDVsMTMwLjg3NyAyMjYuNjg4TDI2MS43NDkuMDAxeiIgZmlsbD0iIzQxYjg4MyIvPjxwYXRoIGQ9Ik0xNjEuMDk2LjAwMWwtMzAuMjI1IDUyLjM1MUwxMDAuNjQ3LjAwMUg1Mi4zNDZsNzguNTI2IDEzNi4wMUwyMDkuMzk4LjAwMXoiIGZpbGw9IiMzNDQ5NWUiLz48L3N2Zz4K";
+const tf = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNjEuNzYgMjI2LjY5Ij48cGF0aCBkPSJNMTYxLjA5Ni4wMDFsLTMwLjIyNSA1Mi4zNTFMMTAwLjY0Ny4wMDFILS4wMDVsMTMwLjg3NyAyMjYuNjg4TDI2MS43NDkuMDAxeiIgZmlsbD0iIzQxYjg4MyIvPjxwYXRoIGQ9Ik0xNjEuMDk2LjAwMWwtMzAuMjI1IDUyLjM1MUwxMDAuNjQ3LjAwMUg1Mi4zNDZsNzguNTI2IDEzNi4wMUwyMDkuMzk4LjAwMXoiIGZpbGw9IiMzNDQ5NWUiLz48L3N2Zz4K";
 /*!
   * vue-router v4.2.4
   * (c) 2023 Eduardo San Martin Morote
   * @license MIT
   */
 const ot = typeof window < "u";
-function of(e) {
+function nf(e) {
   return e.__esModule || e[Symbol.toStringTag] === "Module";
 }
 const Q = Object.assign;
@@ -5068,19 +5068,19 @@ function J(e) {
   const t = Array.from(arguments).slice(1);
   console.warn.apply(console, ["[Vue Router warn]: " + e].concat(t));
 }
-const rf = /\/$/, sf = (e) => e.replace(rf, "");
+const of = /\/$/, rf = (e) => e.replace(of, "");
 function Ro(e, t, n = "/") {
   let o, r = {}, i = "", s = "";
   const l = t.indexOf("#");
   let c = t.indexOf("?");
-  return l < c && l >= 0 && (c = -1), c > -1 && (o = t.slice(0, c), i = t.slice(c + 1, l > -1 ? l : t.length), r = e(i)), l > -1 && (o = o || t.slice(0, l), s = t.slice(l, t.length)), o = af(o ?? t, n), {
+  return l < c && l >= 0 && (c = -1), c > -1 && (o = t.slice(0, c), i = t.slice(c + 1, l > -1 ? l : t.length), r = e(i)), l > -1 && (o = o || t.slice(0, l), s = t.slice(l, t.length)), o = cf(o ?? t, n), {
     fullPath: o + (i && "?") + i + s,
     path: o,
     query: r,
     hash: s
   };
 }
-function lf(e, t) {
+function sf(e, t) {
   const n = t.query ? e(t.query) : "";
   return t.path + (n && "?") + n + (t.hash || "");
 }
@@ -5089,26 +5089,26 @@ function wi(e, t) {
 }
 function Oi(e, t, n) {
   const o = t.matched.length - 1, r = n.matched.length - 1;
-  return o > -1 && o === r && wt(t.matched[o], n.matched[r]) && sl(t.params, n.params) && e(t.query) === e(n.query) && t.hash === n.hash;
+  return o > -1 && o === r && wt(t.matched[o], n.matched[r]) && ll(t.params, n.params) && e(t.query) === e(n.query) && t.hash === n.hash;
 }
 function wt(e, t) {
   return (e.aliasOf || e) === (t.aliasOf || t);
 }
-function sl(e, t) {
+function ll(e, t) {
   if (Object.keys(e).length !== Object.keys(t).length)
     return !1;
   for (const n in e)
-    if (!cf(e[n], t[n]))
+    if (!lf(e[n], t[n]))
       return !1;
   return !0;
 }
-function cf(e, t) {
+function lf(e, t) {
   return Ce(e) ? xi(e, t) : Ce(t) ? xi(t, e) : e === t;
 }
 function xi(e, t) {
   return Ce(t) ? e.length === t.length && e.every((n, o) => n === t[o]) : e.length === 1 && e[0] === t;
 }
-function af(e, t) {
+function cf(e, t) {
   if (e.startsWith("/"))
     return e;
   if ({}.NODE_ENV !== "production" && !t.startsWith("/"))
@@ -5134,20 +5134,20 @@ var En;
 (function(e) {
   e.back = "back", e.forward = "forward", e.unknown = "";
 })(En || (En = {}));
-function uf(e) {
+function af(e) {
   if (!e)
     if (ot) {
       const t = document.querySelector("base");
       e = t && t.getAttribute("href") || "/", e = e.replace(/^\w+:\/\/[^\/]+/, "");
     } else
       e = "/";
-  return e[0] !== "/" && e[0] !== "#" && (e = "/" + e), sf(e);
+  return e[0] !== "/" && e[0] !== "#" && (e = "/" + e), rf(e);
 }
-const ff = /^[^#]+#/;
+const uf = /^[^#]+#/;
+function ff(e, t) {
+  return e.replace(uf, "#") + t;
+}
 function df(e, t) {
-  return e.replace(ff, "#") + t;
-}
-function pf(e, t) {
   const n = document.documentElement.getBoundingClientRect(), o = e.getBoundingClientRect();
   return {
     behavior: t.behavior,
@@ -5159,7 +5159,7 @@ const xo = () => ({
   left: window.pageXOffset,
   top: window.pageYOffset
 });
-function hf(e) {
+function pf(e) {
   let t;
   if ("el" in e) {
     const n = e.el, o = typeof n == "string" && n.startsWith("#");
@@ -5179,7 +5179,7 @@ function hf(e) {
       ({}).NODE_ENV !== "production" && J(`Couldn't find element using selector "${e.el}" returned by scrollBehavior.`);
       return;
     }
-    t = pf(r, e);
+    t = df(r, e);
   } else
     t = e;
   "scrollBehavior" in document.documentElement.style ? window.scrollTo(t) : window.scrollTo(t.left != null ? t.left : window.pageXOffset, t.top != null ? t.top : window.pageYOffset);
@@ -5188,15 +5188,15 @@ function Di(e, t) {
   return (history.state ? history.state.position - t : -1) + e;
 }
 const nr = /* @__PURE__ */ new Map();
-function mf(e, t) {
+function hf(e, t) {
   nr.set(e, t);
 }
-function gf(e) {
+function mf(e) {
   const t = nr.get(e);
   return nr.delete(e), t;
 }
-let _f = () => location.protocol + "//" + location.host;
-function ll(e, t) {
+let gf = () => location.protocol + "//" + location.host;
+function cl(e, t) {
   const { pathname: n, search: o, hash: r } = t, i = e.indexOf("#");
   if (i > -1) {
     let l = r.includes(e.slice(i)) ? e.slice(i).length : 1, c = r.slice(l);
@@ -5204,10 +5204,10 @@ function ll(e, t) {
   }
   return wi(n, e) + o + r;
 }
-function Ef(e, t, n, o) {
+function _f(e, t, n, o) {
   let r = [], i = [], s = null;
   const l = ({ state: h }) => {
-    const _ = ll(e, location), x = n.value, T = t.value;
+    const _ = cl(e, location), x = n.value, T = t.value;
     let j = 0;
     if (h) {
       if (n.value = _, t.value = h, s && s === x) {
@@ -5263,9 +5263,9 @@ function $i(e, t, n, o = !1, r = !1) {
     scroll: r ? xo() : null
   };
 }
-function vf(e) {
+function Ef(e) {
   const { history: t, location: n } = window, o = {
-    value: ll(e, n)
+    value: cl(e, n)
   }, r = { value: t.state };
   r.value || i(o.value, {
     back: null,
@@ -5279,7 +5279,7 @@ function vf(e) {
     scroll: null
   }, !0);
   function i(c, f, u) {
-    const d = e.indexOf("#"), h = d > -1 ? (n.host && document.querySelector("base") ? e : e.slice(d)) + c : _f() + e + c;
+    const d = e.indexOf("#"), h = d > -1 ? (n.host && document.querySelector("base") ? e : e.slice(d)) + c : gf() + e + c;
     try {
       t[u ? "replaceState" : "pushState"](f, "", h), r.value = f;
     } catch (_) {
@@ -5324,9 +5324,9 @@ You can find more information at https://next.router.vuejs.org/guide/migration/#
     replace: s
   };
 }
-function yf(e) {
-  e = uf(e);
-  const t = vf(e), n = Ef(e, t.state, t.location, t.replace);
+function vf(e) {
+  e = af(e);
+  const t = Ef(e), n = _f(e, t.state, t.location, t.replace);
   function o(i, s = !0) {
     s || n.pauseListeners(), history.go(i);
   }
@@ -5335,7 +5335,7 @@ function yf(e) {
     location: "",
     base: e,
     go: o,
-    createHref: df.bind(null, e)
+    createHref: ff.bind(null, e)
   }, t, n);
   return Object.defineProperty(r, "location", {
     enumerable: !0,
@@ -5345,10 +5345,10 @@ function yf(e) {
     get: () => t.state.value
   }), r;
 }
-function bf(e) {
+function yf(e) {
   return typeof e == "string" || e && typeof e == "object";
 }
-function cl(e) {
+function al(e) {
   return typeof e == "string" || typeof e == "symbol";
 }
 const dt = {
@@ -5366,7 +5366,7 @@ var Ci;
 (function(e) {
   e[e.aborted = 4] = "aborted", e[e.cancelled = 8] = "cancelled", e[e.duplicated = 16] = "duplicated";
 })(Ci || (Ci = {}));
-const Nf = {
+const bf = {
   1({ location: e, currentLocation: t }) {
     return `No match for
  ${JSON.stringify(e)}${t ? `
@@ -5374,7 +5374,7 @@ while being at
 ` + JSON.stringify(t) : ""}`;
   },
   2({ from: e, to: t }) {
-    return `Redirected from "${e.fullPath}" to "${Of(t)}" via a navigation guard.`;
+    return `Redirected from "${e.fullPath}" to "${wf(t)}" via a navigation guard.`;
   },
   4({ from: e, to: t }) {
     return `Navigation aborted from "${e.fullPath}" to "${t.fullPath}" via a navigation guard.`;
@@ -5387,7 +5387,7 @@ while being at
   }
 };
 function tn(e, t) {
-  return {}.NODE_ENV !== "production" ? Q(new Error(Nf[e](t)), {
+  return {}.NODE_ENV !== "production" ? Q(new Error(bf[e](t)), {
     type: e,
     [or]: !0
   }, t) : Q(new Error(), {
@@ -5398,25 +5398,25 @@ function tn(e, t) {
 function et(e, t) {
   return e instanceof Error && or in e && (t == null || !!(e.type & t));
 }
-const wf = ["params", "query", "hash"];
-function Of(e) {
+const Nf = ["params", "query", "hash"];
+function wf(e) {
   if (typeof e == "string")
     return e;
   if ("path" in e)
     return e.path;
   const t = {};
-  for (const n of wf)
+  for (const n of Nf)
     n in e && (t[n] = e[n]);
   return JSON.stringify(t, null, 2);
 }
-const Vi = "[^/]+?", xf = {
+const Vi = "[^/]+?", Of = {
   sensitive: !1,
   strict: !1,
   start: !0,
   end: !0
-}, Df = /[.+*?^${}()[\]/\\]/g;
-function $f(e, t) {
-  const n = Q({}, xf, t), o = [];
+}, xf = /[.+*?^${}()[\]/\\]/g;
+function Df(e, t) {
+  const n = Q({}, Of, t), o = [];
   let r = n.start ? "^" : "";
   const i = [];
   for (const f of e) {
@@ -5429,7 +5429,7 @@ function $f(e, t) {
       const h = f[d];
       let _ = 40 + (n.sensitive ? 0.25 : 0);
       if (h.type === 0)
-        d || (r += "/"), r += h.value.replace(Df, "\\$&"), _ += 40;
+        d || (r += "/"), r += h.value.replace(xf, "\\$&"), _ += 40;
       else if (h.type === 1) {
         const { value: x, repeatable: T, optional: j, regexp: I } = h;
         i.push({
@@ -5501,7 +5501,7 @@ function $f(e, t) {
     stringify: c
   };
 }
-function Cf(e, t) {
+function $f(e, t) {
   let n = 0;
   for (; n < e.length && n < t.length; ) {
     const o = t[n] - e[n];
@@ -5511,11 +5511,11 @@ function Cf(e, t) {
   }
   return e.length < t.length ? e.length === 1 && e[0] === 40 + 40 ? -1 : 1 : e.length > t.length ? t.length === 1 && t[0] === 40 + 40 ? 1 : -1 : 0;
 }
-function Vf(e, t) {
+function Cf(e, t) {
   let n = 0;
   const o = e.score, r = t.score;
   for (; n < o.length && n < r.length; ) {
-    const i = Cf(o[n], r[n]);
+    const i = $f(o[n], r[n]);
     if (i)
       return i;
     n++;
@@ -5532,15 +5532,15 @@ function Si(e) {
   const t = e[e.length - 1];
   return e.length > 0 && t[t.length - 1] < 0;
 }
-const Sf = {
+const Vf = {
   type: 0,
   value: ""
-}, If = /[a-zA-Z0-9_]/;
-function Pf(e) {
+}, Sf = /[a-zA-Z0-9_]/;
+function If(e) {
   if (!e)
     return [[]];
   if (e === "/")
-    return [[Sf]];
+    return [[Vf]];
   if (!e.startsWith("/"))
     throw new Error({}.NODE_ENV !== "production" ? `Route paths should start with a "/": "${e}" should be "/${e}".` : `Invalid path "${e}"`);
   function t(_) {
@@ -5581,7 +5581,7 @@ function Pf(e) {
         h(), n = o;
         break;
       case 1:
-        c === "(" ? n = 2 : If.test(c) ? h() : (d(), n = 0, c !== "*" && c !== "?" && c !== "+" && l--);
+        c === "(" ? n = 2 : Sf.test(c) ? h() : (d(), n = 0, c !== "*" && c !== "?" && c !== "+" && l--);
         break;
       case 2:
         c === ")" ? u[u.length - 1] == "\\" ? u = u.slice(0, -1) + c : n = 3 : u += c;
@@ -5596,8 +5596,8 @@ function Pf(e) {
   }
   return n === 2 && t(`Unfinished custom RegExp for param "${f}"`), d(), s(), r;
 }
-function Tf(e, t, n) {
-  const o = $f(Pf(e.path), n);
+function Pf(e, t, n) {
+  const o = Df(If(e.path), n);
   if ({}.NODE_ENV !== "production") {
     const i = /* @__PURE__ */ new Set();
     for (const s of o.keys)
@@ -5612,15 +5612,15 @@ function Tf(e, t, n) {
   });
   return t && !r.record.aliasOf == !t.record.aliasOf && t.children.push(r), r;
 }
-function Rf(e, t) {
+function Tf(e, t) {
   const n = [], o = /* @__PURE__ */ new Map();
   t = Ti({ strict: !1, end: !0, sensitive: !1 }, t);
   function r(u) {
     return o.get(u);
   }
   function i(u, d, h) {
-    const _ = !h, x = Af(u);
-    ({}).NODE_ENV !== "production" && zf(x, d), x.aliasOf = h && h.record;
+    const _ = !h, x = Rf(u);
+    ({}).NODE_ENV !== "production" && jf(x, d), x.aliasOf = h && h.record;
     const T = Ti(t, u), j = [
       x
     ];
@@ -5648,7 +5648,7 @@ function Rf(e, t) {
       if ({}.NODE_ENV !== "production" && A.path === "*")
         throw new Error(`Catch all routes ("*") must now be defined using a param with a custom regexp.
 See more at https://next.router.vuejs.org/guide/migration/#removed-star-or-catch-all-routes.`);
-      if (I = Tf(A, d, T), {}.NODE_ENV !== "production" && d && oe[0] === "/" && Lf(I, d), h ? (h.alias.push(I), {}.NODE_ENV !== "production" && jf(h, I)) : (z = z || I, z !== I && z.alias.push(I), _ && u.name && !Pi(I) && s(u.name)), x.children) {
+      if (I = Pf(A, d, T), {}.NODE_ENV !== "production" && d && oe[0] === "/" && zf(I, d), h ? (h.alias.push(I), {}.NODE_ENV !== "production" && kf(h, I)) : (z = z || I, z !== I && z.alias.push(I), _ && u.name && !Pi(I) && s(u.name)), x.children) {
         const M = x.children;
         for (let de = 0; de < M.length; de++)
           i(M[de], I, h && h.children[de]);
@@ -5660,7 +5660,7 @@ See more at https://next.router.vuejs.org/guide/migration/#removed-star-or-catch
     } : _n;
   }
   function s(u) {
-    if (cl(u)) {
+    if (al(u)) {
       const d = o.get(u);
       d && (o.delete(u), n.splice(n.indexOf(d), 1), d.children.forEach(s), d.alias.forEach(s));
     } else {
@@ -5673,9 +5673,9 @@ See more at https://next.router.vuejs.org/guide/migration/#removed-star-or-catch
   }
   function c(u) {
     let d = 0;
-    for (; d < n.length && Vf(u, n[d]) >= 0 && // Adding children with empty path should still appear before the parent
+    for (; d < n.length && Cf(u, n[d]) >= 0 && // Adding children with empty path should still appear before the parent
     // https://github.com/vuejs/router/issues/1124
-    (u.record.path !== n[d].record.path || !al(u, n[d])); )
+    (u.record.path !== n[d].record.path || !ul(u, n[d])); )
       d++;
     n.splice(d, 0, u), u.record.name && !Pi(u) && o.set(u.record.name, u);
   }
@@ -5721,7 +5721,7 @@ See more at https://next.router.vuejs.org/guide/migration/#removed-star-or-catch
       path: x,
       params: _,
       matched: j,
-      meta: kf(j)
+      meta: Mf(j)
     };
   }
   return e.forEach((u) => i(u)), { addRoute: i, resolve: f, removeRoute: s, getRoutes: l, getRecordMatcher: r };
@@ -5732,7 +5732,7 @@ function Ii(e, t) {
     o in e && (n[o] = e[o]);
   return n;
 }
-function Af(e) {
+function Rf(e) {
   return {
     path: e.path,
     redirect: e.redirect,
@@ -5740,7 +5740,7 @@ function Af(e) {
     meta: e.meta || {},
     aliasOf: void 0,
     beforeEnter: e.beforeEnter,
-    props: Mf(e),
+    props: Af(e),
     children: e.children || [],
     instances: {},
     leaveGuards: /* @__PURE__ */ new Set(),
@@ -5749,7 +5749,7 @@ function Af(e) {
     components: "components" in e ? e.components || null : e.component && { default: e.component }
   };
 }
-function Mf(e) {
+function Af(e) {
   const t = {}, n = e.props || !1;
   if ("component" in e)
     t.default = n;
@@ -5766,7 +5766,7 @@ function Pi(e) {
   }
   return !1;
 }
-function kf(e) {
+function Mf(e) {
   return e.reduce((t, n) => Q(t, n.meta), {});
 }
 function Ti(e, t) {
@@ -5778,7 +5778,7 @@ function Ti(e, t) {
 function rr(e, t) {
   return e.name === t.name && e.optional === t.optional && e.repeatable === t.repeatable;
 }
-function jf(e, t) {
+function kf(e, t) {
   for (const n of e.keys)
     if (!n.optional && !t.keys.find(rr.bind(null, n)))
       return J(`Alias "${t.record.path}" and the original record: "${e.record.path}" must have the exact same param named "${n.name}"`);
@@ -5786,35 +5786,35 @@ function jf(e, t) {
     if (!n.optional && !e.keys.find(rr.bind(null, n)))
       return J(`Alias "${t.record.path}" and the original record: "${e.record.path}" must have the exact same param named "${n.name}"`);
 }
-function zf(e, t) {
+function jf(e, t) {
   t && t.record.name && !e.name && !e.path && J(`The route named "${String(t.record.name)}" has a child without a name and an empty path. Using that name won't render the empty path child so you probably want to move the name to the child instead. If this is intentional, add a name to the child route to remove the warning.`);
 }
-function Lf(e, t) {
+function zf(e, t) {
   for (const n of t.keys)
     if (!e.keys.find(rr.bind(null, n)))
       return J(`Absolute path "${e.record.path}" must have the exact same param named "${n.name}" as its parent "${t.record.path}".`);
 }
-function al(e, t) {
-  return t.children.some((n) => n === e || al(e, n));
+function ul(e, t) {
+  return t.children.some((n) => n === e || ul(e, n));
 }
-const ul = /#/g, Hf = /&/g, Ff = /\//g, Uf = /=/g, Bf = /\?/g, fl = /\+/g, Kf = /%5B/g, Wf = /%5D/g, dl = /%5E/g, qf = /%60/g, pl = /%7B/g, Yf = /%7C/g, hl = /%7D/g, Gf = /%20/g;
+const fl = /#/g, Lf = /&/g, Hf = /\//g, Ff = /=/g, Uf = /\?/g, dl = /\+/g, Bf = /%5B/g, Kf = /%5D/g, pl = /%5E/g, Wf = /%60/g, hl = /%7B/g, qf = /%7C/g, ml = /%7D/g, Yf = /%20/g;
 function Mr(e) {
-  return encodeURI("" + e).replace(Yf, "|").replace(Kf, "[").replace(Wf, "]");
+  return encodeURI("" + e).replace(qf, "|").replace(Bf, "[").replace(Kf, "]");
 }
-function Jf(e) {
-  return Mr(e).replace(pl, "{").replace(hl, "}").replace(dl, "^");
+function Gf(e) {
+  return Mr(e).replace(hl, "{").replace(ml, "}").replace(pl, "^");
 }
 function ir(e) {
-  return Mr(e).replace(fl, "%2B").replace(Gf, "+").replace(ul, "%23").replace(Hf, "%26").replace(qf, "`").replace(pl, "{").replace(hl, "}").replace(dl, "^");
+  return Mr(e).replace(dl, "%2B").replace(Yf, "+").replace(fl, "%23").replace(Lf, "%26").replace(Wf, "`").replace(hl, "{").replace(ml, "}").replace(pl, "^");
+}
+function Jf(e) {
+  return ir(e).replace(Ff, "%3D");
 }
 function Qf(e) {
-  return ir(e).replace(Uf, "%3D");
+  return Mr(e).replace(fl, "%23").replace(Uf, "%3F");
 }
 function Xf(e) {
-  return Mr(e).replace(ul, "%23").replace(Bf, "%3F");
-}
-function Zf(e) {
-  return e == null ? "" : Xf(e).replace(Ff, "%2F");
+  return e == null ? "" : Qf(e).replace(Hf, "%2F");
 }
 function Cn(e) {
   try {
@@ -5824,13 +5824,13 @@ function Cn(e) {
   }
   return "" + e;
 }
-function ed(e) {
+function Zf(e) {
   const t = {};
   if (e === "" || e === "?")
     return t;
   const o = (e[0] === "?" ? e.slice(1) : e).split("&");
   for (let r = 0; r < o.length; ++r) {
-    const i = o[r].replace(fl, " "), s = i.indexOf("="), l = Cn(s < 0 ? i : i.slice(0, s)), c = s < 0 ? null : Cn(i.slice(s + 1));
+    const i = o[r].replace(dl, " "), s = i.indexOf("="), l = Cn(s < 0 ? i : i.slice(0, s)), c = s < 0 ? null : Cn(i.slice(s + 1));
     if (l in t) {
       let f = t[l];
       Ce(f) || (f = t[l] = [f]), f.push(c);
@@ -5843,7 +5843,7 @@ function Ri(e) {
   let t = "";
   for (let n in e) {
     const o = e[n];
-    if (n = Qf(n), o == null) {
+    if (n = Jf(n), o == null) {
       o !== void 0 && (t += (t.length ? "&" : "") + n);
       continue;
     }
@@ -5853,7 +5853,7 @@ function Ri(e) {
   }
   return t;
 }
-function td(e) {
+function ed(e) {
   const t = {};
   for (const n in e) {
     const o = e[n];
@@ -5861,7 +5861,7 @@ function td(e) {
   }
   return t;
 }
-const nd = Symbol({}.NODE_ENV !== "production" ? "router view location matched" : ""), Ai = Symbol({}.NODE_ENV !== "production" ? "router view depth" : ""), kr = Symbol({}.NODE_ENV !== "production" ? "router" : ""), ml = Symbol({}.NODE_ENV !== "production" ? "route location" : ""), sr = Symbol({}.NODE_ENV !== "production" ? "router view location" : "");
+const td = Symbol({}.NODE_ENV !== "production" ? "router view location matched" : ""), Ai = Symbol({}.NODE_ENV !== "production" ? "router view depth" : ""), kr = Symbol({}.NODE_ENV !== "production" ? "router" : ""), gl = Symbol({}.NODE_ENV !== "production" ? "route location" : ""), sr = Symbol({}.NODE_ENV !== "production" ? "router view location" : "");
 function ln() {
   let e = [];
   function t(o) {
@@ -5887,12 +5887,12 @@ function mt(e, t, n, o, r) {
       d === !1 ? l(tn(4, {
         from: n,
         to: t
-      })) : d instanceof Error ? l(d) : bf(d) ? l(tn(2, {
+      })) : d instanceof Error ? l(d) : yf(d) ? l(tn(2, {
         from: t,
         to: d
       })) : (i && // since enterCallbackArray is truthy, both record and name also are
       o.enterCallbacks[r] === i && typeof d == "function" && i.push(d), s());
-    }, f = e.call(o && o.instances[r], t, n, {}.NODE_ENV !== "production" ? od(c, t, n) : c);
+    }, f = e.call(o && o.instances[r], t, n, {}.NODE_ENV !== "production" ? nd(c, t, n) : c);
     let u = Promise.resolve(f);
     if (e.length < 3 && (u = u.then(c)), {}.NODE_ENV !== "production" && e.length > 2) {
       const d = `The "next" callback was never called inside of ${e.name ? '"' + e.name + '"' : ""}:
@@ -5908,7 +5908,7 @@ ${e.toString()}
     u.catch((d) => l(d));
   });
 }
-function od(e, t, n) {
+function nd(e, t, n) {
   let o = 0;
   return function() {
     o++ === 1 && J(`The "next" callback was called more than once in one navigation guard when going from "${n.fullPath}" to "${t.fullPath}". It should be called exactly one time in each navigation guard. This will fail in production.`), e._called = !0, o === 1 && e.apply(null, arguments);
@@ -5932,7 +5932,7 @@ function Ao(e, t, n, o) {
           !l.__warnedDefineAsync && (l.__warnedDefineAsync = !0, J(`Component "${s}" in record with path "${i.path}" is defined using "defineAsyncComponent()". Write "() => import('./MyPage.vue')" instead of "defineAsyncComponent(() => import('./MyPage.vue'))".`));
       }
       if (!(t !== "beforeRouteEnter" && !i.instances[s]))
-        if (rd(l)) {
+        if (od(l)) {
           const f = (l.__vccOpts || l)[t];
           f && r.push(mt(f, n, o, i, s));
         } else {
@@ -5940,7 +5940,7 @@ function Ao(e, t, n, o) {
           ({}).NODE_ENV !== "production" && !("catch" in c) && (J(`Component "${s}" in record with path "${i.path}" is a function that does not return a Promise. If you were passing a functional component, make sure to add a "displayName" to the component. This will break in production if not fixed.`), c = Promise.resolve(c)), r.push(() => c.then((f) => {
             if (!f)
               return Promise.reject(new Error(`Couldn't resolve component "${s}" at "${i.path}"`));
-            const u = of(f) ? f.default : f;
+            const u = nf(f) ? f.default : f;
             i.components[s] = u;
             const h = (u.__vccOpts || u)[t];
             return h && mt(h, n, o, i, s)();
@@ -5950,11 +5950,11 @@ function Ao(e, t, n, o) {
   }
   return r;
 }
-function rd(e) {
+function od(e) {
   return typeof e == "object" || "displayName" in e || "props" in e || "__vccOpts" in e;
 }
 function Mi(e) {
-  const t = it(kr), n = it(ml), o = Re(() => t.resolve(Te(e.to))), r = Re(() => {
+  const t = it(kr), n = it(gl), o = Re(() => t.resolve(Te(e.to))), r = Re(() => {
     const { matched: c } = o.value, { length: f } = c, u = c[f - 1], d = n.matched;
     if (!u || !d.length)
       return -1;
@@ -5970,9 +5970,9 @@ function Mi(e) {
       ki(u) === _ && // avoid comparing the child with its parent
       d[d.length - 1].path !== _ ? d.findIndex(wt.bind(null, c[f - 2])) : h
     );
-  }), i = Re(() => r.value > -1 && ld(n.params, o.value.params)), s = Re(() => r.value > -1 && r.value === n.matched.length - 1 && sl(n.params, o.value.params));
+  }), i = Re(() => r.value > -1 && sd(n.params, o.value.params)), s = Re(() => r.value > -1 && r.value === n.matched.length - 1 && ll(n.params, o.value.params));
   function l(c = {}) {
-    return sd(c) ? t[Te(e.replace) ? "replace" : "push"](
+    return id(c) ? t[Te(e.replace) ? "replace" : "push"](
       Te(e.to)
       // avoid uncaught errors are they are logged anyway
     ).catch(_n) : Promise.resolve();
@@ -5998,7 +5998,7 @@ function Mi(e) {
     navigate: l
   };
 }
-const id = /* @__PURE__ */ In({
+const rd = /* @__PURE__ */ In({
   name: "RouterLink",
   compatConfig: { MODE: 3 },
   props: {
@@ -6029,7 +6029,7 @@ const id = /* @__PURE__ */ In({
     }));
     return () => {
       const i = t.default && t.default(n);
-      return e.custom ? i : Js("a", {
+      return e.custom ? i : Qs("a", {
         "aria-current": n.isExactActive ? e.ariaCurrentValue : null,
         href: n.href,
         // this would override user added attrs but Vue will still add
@@ -6039,8 +6039,8 @@ const id = /* @__PURE__ */ In({
       }, i);
     };
   }
-}), lr = id;
-function sd(e) {
+}), lr = rd;
+function id(e) {
   if (!(e.metaKey || e.altKey || e.ctrlKey || e.shiftKey) && !e.defaultPrevented && !(e.button !== void 0 && e.button !== 0)) {
     if (e.currentTarget && e.currentTarget.getAttribute) {
       const t = e.currentTarget.getAttribute("target");
@@ -6050,7 +6050,7 @@ function sd(e) {
     return e.preventDefault && e.preventDefault(), !0;
   }
 }
-function ld(e, t) {
+function sd(e, t) {
   for (const n in t) {
     const o = t[n], r = e[n];
     if (typeof o == "string") {
@@ -6064,7 +6064,7 @@ function ld(e, t) {
 function ki(e) {
   return e ? e.aliasOf ? e.aliasOf.path : e.path : "";
 }
-const ji = (e, t, n) => e ?? t ?? n, cd = /* @__PURE__ */ In({
+const ji = (e, t, n) => e ?? t ?? n, ld = /* @__PURE__ */ In({
   name: "RouterView",
   // #674 we manually inherit them
   inheritAttrs: !1,
@@ -6079,7 +6079,7 @@ const ji = (e, t, n) => e ?? t ?? n, cd = /* @__PURE__ */ In({
   // https://github.com/vuejs/router/issues/1315
   compatConfig: { MODE: 3 },
   setup(e, { attrs: t, slots: n }) {
-    ({}).NODE_ENV !== "production" && ad();
+    ({}).NODE_ENV !== "production" && cd();
     const o = it(sr), r = Re(() => e.route || o.value), i = it(Ai, 0), s = Re(() => {
       let f = Te(i);
       const { matched: u } = r.value;
@@ -6088,7 +6088,7 @@ const ji = (e, t, n) => e ?? t ?? n, cd = /* @__PURE__ */ In({
         f++;
       return f;
     }), l = Re(() => r.value.matched[s.value]);
-    Kn(Ai, Re(() => s.value + 1)), Kn(nd, l), Kn(sr, r);
+    Kn(Ai, Re(() => s.value + 1)), Kn(td, l), Kn(sr, r);
     const c = yr();
     return Qt(() => [c.value, l.value, e.name], ([f, u, d], [h, _, x]) => {
       u && (u.instances[d] = f, _ && _ !== u && f && f === h && (u.leaveGuards.size || (u.leaveGuards = _.leaveGuards), u.updateGuards.size || (u.updateGuards = _.updateGuards))), f && u && // if there is no instance but to and from are the same this might be
@@ -6098,7 +6098,7 @@ const ji = (e, t, n) => e ?? t ?? n, cd = /* @__PURE__ */ In({
       const f = r.value, u = e.name, d = l.value, h = d && d.components[u];
       if (!h)
         return zi(n.default, { Component: h, route: f });
-      const _ = d.props[u], x = _ ? _ === !0 ? f.params : typeof _ == "function" ? _(f) : _ : null, j = Js(h, Q({}, x, t, {
+      const _ = d.props[u], x = _ ? _ === !0 ? f.params : typeof _ == "function" ? _(f) : _ : null, j = Qs(h, Q({}, x, t, {
         onVnodeUnmounted: (I) => {
           I.component.isUnmounted && (d.instances[u] = null);
         },
@@ -6129,8 +6129,8 @@ function zi(e, t) {
   const n = e(t);
   return n.length === 1 ? n[0] : n;
 }
-const gl = cd;
-function ad() {
+const _l = ld;
+function cd() {
   const e = Ks(), t = e.parent && e.parent.type.name, n = e.parent && e.parent.subTree && e.parent.subTree.type;
   if (t && (t === "KeepAlive" || t.includes("Transition")) && typeof n == "object" && n.name === "RouterView") {
     const o = t === "KeepAlive" ? "keep-alive" : "transition";
@@ -6147,7 +6147,7 @@ Use slot props instead:
 function cn(e, t) {
   const n = Q({}, e, {
     // remove variables that can contain vue instances
-    matched: e.matched.map((o) => Ed(o, ["instances", "children", "aliasOf"]))
+    matched: e.matched.map((o) => _d(o, ["instances", "children", "aliasOf"]))
   });
   return {
     _custom: {
@@ -6166,12 +6166,12 @@ function Hn(e) {
     }
   };
 }
-let ud = 0;
-function fd(e, t, n) {
+let ad = 0;
+function ud(e, t, n) {
   if (t.__hasDevtools)
     return;
   t.__hasDevtools = !0;
-  const o = ud++;
+  const o = ad++;
   Tr({
     id: "org.vuejs.router" + (o ? "." + o : ""),
     label: "Vue Router",
@@ -6195,12 +6195,12 @@ function fd(e, t, n) {
           label: (h.name ? `${h.name.toString()}: ` : "") + h.path,
           textColor: 0,
           tooltip: "This component is rendered by &lt;router-view&gt;",
-          backgroundColor: _l
+          backgroundColor: El
         });
       }
       Ce(d.__vrl_devtools) && (d.__devtoolsApi = r, d.__vrl_devtools.forEach((h) => {
-        let _ = yl, x = "";
-        h.isExactActive ? (_ = vl, x = "This is exactly active") : h.isActive && (_ = El, x = "This link is active"), u.tags.push({
+        let _ = bl, x = "";
+        h.isExactActive ? (_ = yl, x = "This is exactly active") : h.isActive && (_ = vl, x = "This link is active"), u.tags.push({
           label: h.route.path,
           textColor: 0,
           tooltip: x,
@@ -6283,10 +6283,10 @@ function fd(e, t, n) {
         return;
       const u = f;
       let d = n.getRoutes().filter((h) => !h.parent);
-      d.forEach(wl), u.filter && (d = d.filter((h) => (
+      d.forEach(Ol), u.filter && (d = d.filter((h) => (
         // save matches state based on the payload
         cr(h, u.filter.toLowerCase())
-      ))), d.forEach((h) => Nl(h, t.currentRoute.value)), u.rootNodes = d.map(bl);
+      ))), d.forEach((h) => wl(h, t.currentRoute.value)), u.rootNodes = d.map(Nl);
     }
     let f;
     r.on.getInspectorTree((u) => {
@@ -6295,16 +6295,16 @@ function fd(e, t, n) {
       if (u.app === e && u.inspectorId === l) {
         const h = n.getRoutes().find((_) => _.record.__vd_id === u.nodeId);
         h && (u.state = {
-          options: pd(h)
+          options: dd(h)
         });
       }
     }), r.sendInspectorTree(l), r.sendInspectorState(l);
   });
 }
-function dd(e) {
+function fd(e) {
   return e.optional ? e.repeatable ? "*" : "?" : e.repeatable ? "+" : "";
 }
-function pd(e) {
+function dd(e) {
   const { record: t } = e, n = [
     { editable: !1, key: "path", value: t.path }
   ];
@@ -6319,7 +6319,7 @@ function pd(e) {
       _custom: {
         type: null,
         readOnly: !0,
-        display: e.keys.map((o) => `${o.name}${dd(o)}`).join(" "),
+        display: e.keys.map((o) => `${o.name}${fd(o)}`).join(" "),
         tooltip: "Param keys",
         value: e.keys
       }
@@ -6350,53 +6350,53 @@ function pd(e) {
     }
   }), n;
 }
-const _l = 15485081, El = 2450411, vl = 8702998, hd = 2282478, yl = 16486972, md = 6710886;
-function bl(e) {
+const El = 15485081, vl = 2450411, yl = 8702998, pd = 2282478, bl = 16486972, hd = 6710886;
+function Nl(e) {
   const t = [], { record: n } = e;
   n.name != null && t.push({
     label: String(n.name),
     textColor: 0,
-    backgroundColor: hd
+    backgroundColor: pd
   }), n.aliasOf && t.push({
     label: "alias",
     textColor: 0,
-    backgroundColor: yl
+    backgroundColor: bl
   }), e.__vd_match && t.push({
     label: "matches",
     textColor: 0,
-    backgroundColor: _l
+    backgroundColor: El
   }), e.__vd_exactActive && t.push({
     label: "exact",
     textColor: 0,
-    backgroundColor: vl
+    backgroundColor: yl
   }), e.__vd_active && t.push({
     label: "active",
     textColor: 0,
-    backgroundColor: El
+    backgroundColor: vl
   }), n.redirect && t.push({
     label: typeof n.redirect == "string" ? `redirect: ${n.redirect}` : "redirects",
     textColor: 16777215,
-    backgroundColor: md
+    backgroundColor: hd
   });
   let o = n.__vd_id;
-  return o == null && (o = String(gd++), n.__vd_id = o), {
+  return o == null && (o = String(md++), n.__vd_id = o), {
     id: o,
     label: n.path,
     tags: t,
-    children: e.children.map(bl)
+    children: e.children.map(Nl)
   };
 }
-let gd = 0;
-const _d = /^\/(.*)\/([a-z]*)$/;
-function Nl(e, t) {
+let md = 0;
+const gd = /^\/(.*)\/([a-z]*)$/;
+function wl(e, t) {
   const n = t.matched.length && wt(t.matched[t.matched.length - 1], e.record);
-  e.__vd_exactActive = e.__vd_active = n, n || (e.__vd_active = t.matched.some((o) => wt(o, e.record))), e.children.forEach((o) => Nl(o, t));
+  e.__vd_exactActive = e.__vd_active = n, n || (e.__vd_active = t.matched.some((o) => wt(o, e.record))), e.children.forEach((o) => wl(o, t));
 }
-function wl(e) {
-  e.__vd_match = !1, e.children.forEach(wl);
+function Ol(e) {
+  e.__vd_match = !1, e.children.forEach(Ol);
 }
 function cr(e, t) {
-  const n = String(e.re).match(_d);
+  const n = String(e.re).match(gd);
   if (e.__vd_match = !1, !n || n.length < 3)
     return !1;
   if (new RegExp(n[1].replace(/\$$/, ""), n[2]).test(t))
@@ -6404,26 +6404,26 @@ function cr(e, t) {
   const r = e.record.path.toLowerCase(), i = Cn(r);
   return !t.startsWith("/") && (i.includes(t) || r.includes(t)) || i.startsWith(t) || r.startsWith(t) || e.record.name && String(e.record.name).includes(t) ? !0 : e.children.some((s) => cr(s, t));
 }
-function Ed(e, t) {
+function _d(e, t) {
   const n = {};
   for (const o in e)
     t.includes(o) || (n[o] = e[o]);
   return n;
 }
-function vd(e) {
-  const t = Rf(e.routes, e), n = e.parseQuery || ed, o = e.stringifyQuery || Ri, r = e.history;
+function Ed(e) {
+  const t = Tf(e.routes, e), n = e.parseQuery || Zf, o = e.stringifyQuery || Ri, r = e.history;
   if ({}.NODE_ENV !== "production" && !r)
     throw new Error('Provide the "history" option when calling "createRouter()": https://next.router.vuejs.org/api/#history.');
   const i = ln(), s = ln(), l = ln(), c = Ec(dt);
   let f = dt;
   ot && e.scrollBehavior && "scrollRestoration" in history && (history.scrollRestoration = "manual");
-  const u = To.bind(null, (g) => "" + g), d = To.bind(null, Zf), h = (
+  const u = To.bind(null, (g) => "" + g), d = To.bind(null, Xf), h = (
     // @ts-expect-error: intentionally avoid the type check
     To.bind(null, Cn)
   );
   function _(g, $) {
     let C, V;
-    return cl(g) ? (C = t.getRecordMatcher(g), V = $) : V = g, t.addRoute(V, C);
+    return al(g) ? (C = t.getRecordMatcher(g), V = $) : V = g, t.addRoute(V, C);
   }
   function x(g) {
     const $ = t.getRecordMatcher(g);
@@ -6461,8 +6461,8 @@ function vd(e) {
     }
     const V = t.resolve(C, $), Y = g.hash || "";
     ({}).NODE_ENV !== "production" && Y && !Y.startsWith("#") && J(`A \`hash\` should always start with the character "#". Replace "${Y}" with "#${Y}".`), V.params = u(h(V.params));
-    const re = lf(o, Q({}, g, {
-      hash: Jf(Y),
+    const re = sf(o, Q({}, g, {
+      hash: Gf(Y),
       path: V.path
     })), a = r.createHref(re);
     return {}.NODE_ENV !== "production" && (a.startsWith("//") ? J(`Location "${g}" resolved to "${a}". A resolved location cannot start with multiple slashes.`) : V.matched.length || J(`No match found for location with path "${"path" in g ? g.path : g}"`)), Q({
@@ -6476,7 +6476,7 @@ function vd(e) {
         // numbers at `$route.query`, but at the point, the user will have to
         // use their own type anyway.
         // https://github.com/vuejs/router/issues/328#issuecomment-649481567
-        o === Ri ? td(g.query) : g.query || {}
+        o === Ri ? ed(g.query) : g.query || {}
       )
     }, V, {
       redirectedFrom: void 0,
@@ -6594,7 +6594,7 @@ ${JSON.stringify(V, null, 2)}
   }
   function Ve(g, $) {
     let C;
-    const [V, Y, re] = yd(g, $);
+    const [V, Y, re] = vd(g, $);
     C = Ao(V.reverse(), "beforeRouteLeave", g, $);
     for (const p of V)
       p.leaveGuards.forEach((m) => {
@@ -6658,7 +6658,7 @@ ${JSON.stringify(V, null, 2)}
       }
       f = V;
       const re = c.value;
-      ot && mf(Di(re.fullPath, C.delta), xo()), Ve(V, re).catch((a) => et(
+      ot && hf(Di(re.fullPath, C.delta), xo()), Ve(V, re).catch((a) => et(
         a,
         12
         /* ErrorTypes.NAVIGATION_CANCELLED */
@@ -6714,8 +6714,8 @@ ${JSON.stringify(V, null, 2)}
     const { scrollBehavior: Y } = e;
     if (!ot || !Y)
       return Promise.resolve();
-    const re = !C && gf(Di(g.fullPath, 0)) || (V || !C) && history.state && history.state.scroll || null;
-    return ps().then(() => Y(g, $, re)).then((a) => a && hf(a)).catch((a) => B(a, g, $));
+    const re = !C && mf(Di(g.fullPath, 0)) || (V || !C) && history.state && history.state.scroll || null;
+    return ps().then(() => Y(g, $, re)).then((a) => a && pf(a)).catch((a) => B(a, g, $));
   }
   const We = (g) => r.go(g);
   let Pe;
@@ -6740,7 +6740,7 @@ ${JSON.stringify(V, null, 2)}
     isReady: Ie,
     install(g) {
       const $ = this;
-      g.component("RouterLink", lr), g.component("RouterView", gl), g.config.globalProperties.$router = $, Object.defineProperty(g.config.globalProperties, "$route", {
+      g.component("RouterLink", lr), g.component("RouterView", _l), g.config.globalProperties.$router = $, Object.defineProperty(g.config.globalProperties, "$route", {
         enumerable: !0,
         get: () => Te(c)
       }), ot && // used for the initial navigation client side to avoid pushing
@@ -6754,11 +6754,11 @@ ${JSON.stringify(V, null, 2)}
           get: () => c.value[Y],
           enumerable: !0
         });
-      g.provide(kr, $), g.provide(ml, is(C)), g.provide(sr, c);
+      g.provide(kr, $), g.provide(gl, is(C)), g.provide(sr, c);
       const V = g.unmount;
       at.add(g), g.unmount = function() {
         at.delete(g), at.size < 1 && (f = dt, Ke && Ke(), Ke = null, c.value = dt, Pe = !1, U = !1), V();
-      }, {}.NODE_ENV !== "production" && ot && fd(g, $, t);
+      }, {}.NODE_ENV !== "production" && ot && ud(g, $, t);
     }
   };
   function ut(g) {
@@ -6766,7 +6766,7 @@ ${JSON.stringify(V, null, 2)}
   }
   return Rn;
 }
-function yd(e, t) {
+function vd(e, t) {
   const n = [], o = [], r = [], i = Math.max(t.matched.length, e.matched.length);
   for (let s = 0; s < i; s++) {
     const l = t.matched[s];
@@ -6781,7 +6781,7 @@ const ar = "MyQNavEvent", lt = (e, t) => {
   for (const [o, r] of t)
     n[o] = r;
   return n;
-}, bd = {
+}, yd = {
   data() {
     return {};
   },
@@ -6807,10 +6807,10 @@ const ar = "MyQNavEvent", lt = (e, t) => {
     (e = window.eventBus) == null || e.unsubscribe(ar, this.onNavChange), (t = window.eventBus) == null || t.unsubscribe("appDataChange", this.onAppDataChange);
   }
 };
-function Nd(e, t, n, o, r, i) {
+function bd(e, t, n, o, r, i) {
   return $e(), Me("span");
 }
-const wd = /* @__PURE__ */ lt(bd, [["render", Nd]]), Od = (e) => (ws("data-v-a47c673d"), e = e(), Os(), e), xd = { class: "greetings" }, Dd = { class: "green" }, $d = /* @__PURE__ */ Od(() => /* @__PURE__ */ q("h3", null, [
+const Nd = /* @__PURE__ */ lt(yd, [["render", bd]]), wd = (e) => (ws("data-v-a47c673d"), e = e(), Os(), e), Od = { class: "greetings" }, xd = { class: "green" }, Dd = /* @__PURE__ */ wd(() => /* @__PURE__ */ q("h3", null, [
   /* @__PURE__ */ G(" You’ve successfully created a project with "),
   /* @__PURE__ */ q("a", {
     href: "https://vitejs.dev/",
@@ -6824,26 +6824,26 @@ const wd = /* @__PURE__ */ lt(bd, [["render", Nd]]), Od = (e) => (ws("data-v-a47
     rel: "noopener"
   }, "Vue 3"),
   /* @__PURE__ */ G(". What's next? ")
-], -1)), Cd = /* @__PURE__ */ In({
+], -1)), $d = /* @__PURE__ */ In({
   __name: "HelloWorld",
   props: {
     msg: {}
   },
   setup(e) {
-    return (t, n) => ($e(), Me("div", xd, [
-      q("h1", Dd, Hl(t.msg), 1),
-      $d
+    return (t, n) => ($e(), Me("div", Od, [
+      q("h1", xd, Hl(t.msg), 1),
+      Dd
     ]));
   }
 });
-const Vd = /* @__PURE__ */ lt(Cd, [["__scopeId", "data-v-a47c673d"]]);
-const Sd = {}, Id = { class: "item" }, Pd = { class: "details" };
-function Td(e, t) {
-  return $e(), Me("div", Id, [
+const Cd = /* @__PURE__ */ lt($d, [["__scopeId", "data-v-a47c673d"]]);
+const Vd = {}, Sd = { class: "item" }, Id = { class: "details" };
+function Pd(e, t) {
+  return $e(), Me("div", Sd, [
     q("i", null, [
       Co(e.$slots, "icon", {}, void 0, !0)
     ]),
-    q("div", Pd, [
+    q("div", Id, [
       q("h3", null, [
         Co(e.$slots, "heading", {}, void 0, !0)
       ]),
@@ -6851,18 +6851,18 @@ function Td(e, t) {
     ])
   ]);
 }
-const an = /* @__PURE__ */ lt(Sd, [["render", Td], ["__scopeId", "data-v-fd0742eb"]]), Rd = {}, Ad = {
+const an = /* @__PURE__ */ lt(Vd, [["render", Pd], ["__scopeId", "data-v-fd0742eb"]]), Td = {}, Rd = {
   xmlns: "http://www.w3.org/2000/svg",
   width: "20",
   height: "17",
   fill: "currentColor"
-}, Md = /* @__PURE__ */ q("path", { d: "M11 2.253a1 1 0 1 0-2 0h2zm-2 13a1 1 0 1 0 2 0H9zm.447-12.167a1 1 0 1 0 1.107-1.666L9.447 3.086zM1 2.253L.447 1.42A1 1 0 0 0 0 2.253h1zm0 13H0a1 1 0 0 0 1.553.833L1 15.253zm8.447.833a1 1 0 1 0 1.107-1.666l-1.107 1.666zm0-14.666a1 1 0 1 0 1.107 1.666L9.447 1.42zM19 2.253h1a1 1 0 0 0-.447-.833L19 2.253zm0 13l-.553.833A1 1 0 0 0 20 15.253h-1zm-9.553-.833a1 1 0 1 0 1.107 1.666L9.447 14.42zM9 2.253v13h2v-13H9zm1.553-.833C9.203.523 7.42 0 5.5 0v2c1.572 0 2.961.431 3.947 1.086l1.107-1.666zM5.5 0C3.58 0 1.797.523.447 1.42l1.107 1.666C2.539 2.431 3.928 2 5.5 2V0zM0 2.253v13h2v-13H0zm1.553 13.833C2.539 15.431 3.928 15 5.5 15v-2c-1.92 0-3.703.523-5.053 1.42l1.107 1.666zM5.5 15c1.572 0 2.961.431 3.947 1.086l1.107-1.666C9.203 13.523 7.42 13 5.5 13v2zm5.053-11.914C11.539 2.431 12.928 2 14.5 2V0c-1.92 0-3.703.523-5.053 1.42l1.107 1.666zM14.5 2c1.573 0 2.961.431 3.947 1.086l1.107-1.666C18.203.523 16.421 0 14.5 0v2zm3.5.253v13h2v-13h-2zm1.553 12.167C18.203 13.523 16.421 13 14.5 13v2c1.573 0 2.961.431 3.947 1.086l1.107-1.666zM14.5 13c-1.92 0-3.703.523-5.053 1.42l1.107 1.666C11.539 15.431 12.928 15 14.5 15v-2z" }, null, -1), kd = [
-  Md
+}, Ad = /* @__PURE__ */ q("path", { d: "M11 2.253a1 1 0 1 0-2 0h2zm-2 13a1 1 0 1 0 2 0H9zm.447-12.167a1 1 0 1 0 1.107-1.666L9.447 3.086zM1 2.253L.447 1.42A1 1 0 0 0 0 2.253h1zm0 13H0a1 1 0 0 0 1.553.833L1 15.253zm8.447.833a1 1 0 1 0 1.107-1.666l-1.107 1.666zm0-14.666a1 1 0 1 0 1.107 1.666L9.447 1.42zM19 2.253h1a1 1 0 0 0-.447-.833L19 2.253zm0 13l-.553.833A1 1 0 0 0 20 15.253h-1zm-9.553-.833a1 1 0 1 0 1.107 1.666L9.447 14.42zM9 2.253v13h2v-13H9zm1.553-.833C9.203.523 7.42 0 5.5 0v2c1.572 0 2.961.431 3.947 1.086l1.107-1.666zM5.5 0C3.58 0 1.797.523.447 1.42l1.107 1.666C2.539 2.431 3.928 2 5.5 2V0zM0 2.253v13h2v-13H0zm1.553 13.833C2.539 15.431 3.928 15 5.5 15v-2c-1.92 0-3.703.523-5.053 1.42l1.107 1.666zM5.5 15c1.572 0 2.961.431 3.947 1.086l1.107-1.666C9.203 13.523 7.42 13 5.5 13v2zm5.053-11.914C11.539 2.431 12.928 2 14.5 2V0c-1.92 0-3.703.523-5.053 1.42l1.107 1.666zM14.5 2c1.573 0 2.961.431 3.947 1.086l1.107-1.666C18.203.523 16.421 0 14.5 0v2zm3.5.253v13h2v-13h-2zm1.553 12.167C18.203 13.523 16.421 13 14.5 13v2c1.573 0 2.961.431 3.947 1.086l1.107-1.666zM14.5 13c-1.92 0-3.703.523-5.053 1.42l1.107 1.666C11.539 15.431 12.928 15 14.5 15v-2z" }, null, -1), Md = [
+  Ad
 ];
-function jd(e, t) {
-  return $e(), Me("svg", Ad, kd);
+function kd(e, t) {
+  return $e(), Me("svg", Rd, Md);
 }
-const zd = /* @__PURE__ */ lt(Rd, [["render", jd]]), Ld = {}, Hd = {
+const jd = /* @__PURE__ */ lt(Td, [["render", kd]]), zd = {}, Ld = {
   xmlns: "http://www.w3.org/2000/svg",
   "xmlns:xlink": "http://www.w3.org/1999/xlink",
   "aria-hidden": "true",
@@ -6872,249 +6872,260 @@ const zd = /* @__PURE__ */ lt(Rd, [["render", jd]]), Ld = {}, Hd = {
   height: "24",
   preserveAspectRatio: "xMidYMid meet",
   viewBox: "0 0 24 24"
-}, Fd = /* @__PURE__ */ q("path", {
+}, Hd = /* @__PURE__ */ q("path", {
   d: "M20 18v-4h-3v1h-2v-1H9v1H7v-1H4v4h16M6.33 8l-1.74 4H7v-1h2v1h6v-1h2v1h2.41l-1.74-4H6.33M9 5v1h6V5H9m12.84 7.61c.1.22.16.48.16.8V18c0 .53-.21 1-.6 1.41c-.4.4-.85.59-1.4.59H4c-.55 0-1-.19-1.4-.59C2.21 19 2 18.53 2 18v-4.59c0-.32.06-.58.16-.8L4.5 7.22C4.84 6.41 5.45 6 6.33 6H7V5c0-.55.18-1 .57-1.41C7.96 3.2 8.44 3 9 3h6c.56 0 1.04.2 1.43.59c.39.41.57.86.57 1.41v1h.67c.88 0 1.49.41 1.83 1.22l2.34 5.39z",
   fill: "currentColor"
-}, null, -1), Ud = [
-  Fd
+}, null, -1), Fd = [
+  Hd
 ];
-function Bd(e, t) {
-  return $e(), Me("svg", Hd, Ud);
+function Ud(e, t) {
+  return $e(), Me("svg", Ld, Fd);
 }
-const Kd = /* @__PURE__ */ lt(Ld, [["render", Bd]]), Wd = {}, qd = {
+const Bd = /* @__PURE__ */ lt(zd, [["render", Ud]]), Kd = {}, Wd = {
   xmlns: "http://www.w3.org/2000/svg",
   width: "18",
   height: "20",
   fill: "currentColor"
-}, Yd = /* @__PURE__ */ q("path", { d: "M11.447 8.894a1 1 0 1 0-.894-1.789l.894 1.789zm-2.894-.789a1 1 0 1 0 .894 1.789l-.894-1.789zm0 1.789a1 1 0 1 0 .894-1.789l-.894 1.789zM7.447 7.106a1 1 0 1 0-.894 1.789l.894-1.789zM10 9a1 1 0 1 0-2 0h2zm-2 2.5a1 1 0 1 0 2 0H8zm9.447-5.606a1 1 0 1 0-.894-1.789l.894 1.789zm-2.894-.789a1 1 0 1 0 .894 1.789l-.894-1.789zm2 .789a1 1 0 1 0 .894-1.789l-.894 1.789zm-1.106-2.789a1 1 0 1 0-.894 1.789l.894-1.789zM18 5a1 1 0 1 0-2 0h2zm-2 2.5a1 1 0 1 0 2 0h-2zm-5.447-4.606a1 1 0 1 0 .894-1.789l-.894 1.789zM9 1l.447-.894a1 1 0 0 0-.894 0L9 1zm-2.447.106a1 1 0 1 0 .894 1.789l-.894-1.789zm-6 3a1 1 0 1 0 .894 1.789L.553 4.106zm2.894.789a1 1 0 1 0-.894-1.789l.894 1.789zm-2-.789a1 1 0 1 0-.894 1.789l.894-1.789zm1.106 2.789a1 1 0 1 0 .894-1.789l-.894 1.789zM2 5a1 1 0 1 0-2 0h2zM0 7.5a1 1 0 1 0 2 0H0zm8.553 12.394a1 1 0 1 0 .894-1.789l-.894 1.789zm-1.106-2.789a1 1 0 1 0-.894 1.789l.894-1.789zm1.106 1a1 1 0 1 0 .894 1.789l-.894-1.789zm2.894.789a1 1 0 1 0-.894-1.789l.894 1.789zM8 19a1 1 0 1 0 2 0H8zm2-2.5a1 1 0 1 0-2 0h2zm-7.447.394a1 1 0 1 0 .894-1.789l-.894 1.789zM1 15H0a1 1 0 0 0 .553.894L1 15zm1-2.5a1 1 0 1 0-2 0h2zm12.553 2.606a1 1 0 1 0 .894 1.789l-.894-1.789zM17 15l.447.894A1 1 0 0 0 18 15h-1zm1-2.5a1 1 0 1 0-2 0h2zm-7.447-5.394l-2 1 .894 1.789 2-1-.894-1.789zm-1.106 1l-2-1-.894 1.789 2 1 .894-1.789zM8 9v2.5h2V9H8zm8.553-4.894l-2 1 .894 1.789 2-1-.894-1.789zm.894 0l-2-1-.894 1.789 2 1 .894-1.789zM16 5v2.5h2V5h-2zm-4.553-3.894l-2-1-.894 1.789 2 1 .894-1.789zm-2.894-1l-2 1 .894 1.789 2-1L8.553.106zM1.447 5.894l2-1-.894-1.789-2 1 .894 1.789zm-.894 0l2 1 .894-1.789-2-1-.894 1.789zM0 5v2.5h2V5H0zm9.447 13.106l-2-1-.894 1.789 2 1 .894-1.789zm0 1.789l2-1-.894-1.789-2 1 .894 1.789zM10 19v-2.5H8V19h2zm-6.553-3.894l-2-1-.894 1.789 2 1 .894-1.789zM2 15v-2.5H0V15h2zm13.447 1.894l2-1-.894-1.789-2 1 .894 1.789zM18 15v-2.5h-2V15h2z" }, null, -1), Gd = [
-  Yd
+}, qd = /* @__PURE__ */ q("path", { d: "M11.447 8.894a1 1 0 1 0-.894-1.789l.894 1.789zm-2.894-.789a1 1 0 1 0 .894 1.789l-.894-1.789zm0 1.789a1 1 0 1 0 .894-1.789l-.894 1.789zM7.447 7.106a1 1 0 1 0-.894 1.789l.894-1.789zM10 9a1 1 0 1 0-2 0h2zm-2 2.5a1 1 0 1 0 2 0H8zm9.447-5.606a1 1 0 1 0-.894-1.789l.894 1.789zm-2.894-.789a1 1 0 1 0 .894 1.789l-.894-1.789zm2 .789a1 1 0 1 0 .894-1.789l-.894 1.789zm-1.106-2.789a1 1 0 1 0-.894 1.789l.894-1.789zM18 5a1 1 0 1 0-2 0h2zm-2 2.5a1 1 0 1 0 2 0h-2zm-5.447-4.606a1 1 0 1 0 .894-1.789l-.894 1.789zM9 1l.447-.894a1 1 0 0 0-.894 0L9 1zm-2.447.106a1 1 0 1 0 .894 1.789l-.894-1.789zm-6 3a1 1 0 1 0 .894 1.789L.553 4.106zm2.894.789a1 1 0 1 0-.894-1.789l.894 1.789zm-2-.789a1 1 0 1 0-.894 1.789l.894-1.789zm1.106 2.789a1 1 0 1 0 .894-1.789l-.894 1.789zM2 5a1 1 0 1 0-2 0h2zM0 7.5a1 1 0 1 0 2 0H0zm8.553 12.394a1 1 0 1 0 .894-1.789l-.894 1.789zm-1.106-2.789a1 1 0 1 0-.894 1.789l.894-1.789zm1.106 1a1 1 0 1 0 .894 1.789l-.894-1.789zm2.894.789a1 1 0 1 0-.894-1.789l.894 1.789zM8 19a1 1 0 1 0 2 0H8zm2-2.5a1 1 0 1 0-2 0h2zm-7.447.394a1 1 0 1 0 .894-1.789l-.894 1.789zM1 15H0a1 1 0 0 0 .553.894L1 15zm1-2.5a1 1 0 1 0-2 0h2zm12.553 2.606a1 1 0 1 0 .894 1.789l-.894-1.789zM17 15l.447.894A1 1 0 0 0 18 15h-1zm1-2.5a1 1 0 1 0-2 0h2zm-7.447-5.394l-2 1 .894 1.789 2-1-.894-1.789zm-1.106 1l-2-1-.894 1.789 2 1 .894-1.789zM8 9v2.5h2V9H8zm8.553-4.894l-2 1 .894 1.789 2-1-.894-1.789zm.894 0l-2-1-.894 1.789 2 1 .894-1.789zM16 5v2.5h2V5h-2zm-4.553-3.894l-2-1-.894 1.789 2 1 .894-1.789zm-2.894-1l-2 1 .894 1.789 2-1L8.553.106zM1.447 5.894l2-1-.894-1.789-2 1 .894 1.789zm-.894 0l2 1 .894-1.789-2-1-.894 1.789zM0 5v2.5h2V5H0zm9.447 13.106l-2-1-.894 1.789 2 1 .894-1.789zm0 1.789l2-1-.894-1.789-2 1 .894 1.789zM10 19v-2.5H8V19h2zm-6.553-3.894l-2-1-.894 1.789 2 1 .894-1.789zM2 15v-2.5H0V15h2zm13.447 1.894l2-1-.894-1.789-2 1 .894 1.789zM18 15v-2.5h-2V15h2z" }, null, -1), Yd = [
+  qd
 ];
-function Jd(e, t) {
-  return $e(), Me("svg", qd, Gd);
+function Gd(e, t) {
+  return $e(), Me("svg", Wd, Yd);
 }
-const Qd = /* @__PURE__ */ lt(Wd, [["render", Jd]]), Xd = {}, Zd = {
+const Jd = /* @__PURE__ */ lt(Kd, [["render", Gd]]), Qd = {}, Xd = {
   xmlns: "http://www.w3.org/2000/svg",
   width: "20",
   height: "20",
   fill: "currentColor"
-}, ep = /* @__PURE__ */ q("path", { d: "M15 4a1 1 0 1 0 0 2V4zm0 11v-1a1 1 0 0 0-1 1h1zm0 4l-.707.707A1 1 0 0 0 16 19h-1zm-4-4l.707-.707A1 1 0 0 0 11 14v1zm-4.707-1.293a1 1 0 0 0-1.414 1.414l1.414-1.414zm-.707.707l-.707-.707.707.707zM9 11v-1a1 1 0 0 0-.707.293L9 11zm-4 0h1a1 1 0 0 0-1-1v1zm0 4H4a1 1 0 0 0 1.707.707L5 15zm10-9h2V4h-2v2zm2 0a1 1 0 0 1 1 1h2a3 3 0 0 0-3-3v2zm1 1v6h2V7h-2zm0 6a1 1 0 0 1-1 1v2a3 3 0 0 0 3-3h-2zm-1 1h-2v2h2v-2zm-3 1v4h2v-4h-2zm1.707 3.293l-4-4-1.414 1.414 4 4 1.414-1.414zM11 14H7v2h4v-2zm-4 0c-.276 0-.525-.111-.707-.293l-1.414 1.414C5.42 15.663 6.172 16 7 16v-2zm-.707 1.121l3.414-3.414-1.414-1.414-3.414 3.414 1.414 1.414zM9 12h4v-2H9v2zm4 0a3 3 0 0 0 3-3h-2a1 1 0 0 1-1 1v2zm3-3V3h-2v6h2zm0-6a3 3 0 0 0-3-3v2a1 1 0 0 1 1 1h2zm-3-3H3v2h10V0zM3 0a3 3 0 0 0-3 3h2a1 1 0 0 1 1-1V0zM0 3v6h2V3H0zm0 6a3 3 0 0 0 3 3v-2a1 1 0 0 1-1-1H0zm3 3h2v-2H3v2zm1-1v4h2v-4H4zm1.707 4.707l.586-.586-1.414-1.414-.586.586 1.414 1.414z" }, null, -1), tp = [
-  ep
+}, Zd = /* @__PURE__ */ q("path", { d: "M15 4a1 1 0 1 0 0 2V4zm0 11v-1a1 1 0 0 0-1 1h1zm0 4l-.707.707A1 1 0 0 0 16 19h-1zm-4-4l.707-.707A1 1 0 0 0 11 14v1zm-4.707-1.293a1 1 0 0 0-1.414 1.414l1.414-1.414zm-.707.707l-.707-.707.707.707zM9 11v-1a1 1 0 0 0-.707.293L9 11zm-4 0h1a1 1 0 0 0-1-1v1zm0 4H4a1 1 0 0 0 1.707.707L5 15zm10-9h2V4h-2v2zm2 0a1 1 0 0 1 1 1h2a3 3 0 0 0-3-3v2zm1 1v6h2V7h-2zm0 6a1 1 0 0 1-1 1v2a3 3 0 0 0 3-3h-2zm-1 1h-2v2h2v-2zm-3 1v4h2v-4h-2zm1.707 3.293l-4-4-1.414 1.414 4 4 1.414-1.414zM11 14H7v2h4v-2zm-4 0c-.276 0-.525-.111-.707-.293l-1.414 1.414C5.42 15.663 6.172 16 7 16v-2zm-.707 1.121l3.414-3.414-1.414-1.414-3.414 3.414 1.414 1.414zM9 12h4v-2H9v2zm4 0a3 3 0 0 0 3-3h-2a1 1 0 0 1-1 1v2zm3-3V3h-2v6h2zm0-6a3 3 0 0 0-3-3v2a1 1 0 0 1 1 1h2zm-3-3H3v2h10V0zM3 0a3 3 0 0 0-3 3h2a1 1 0 0 1 1-1V0zM0 3v6h2V3H0zm0 6a3 3 0 0 0 3 3v-2a1 1 0 0 1-1-1H0zm3 3h2v-2H3v2zm1-1v4h2v-4H4zm1.707 4.707l.586-.586-1.414-1.414-.586.586 1.414 1.414z" }, null, -1), ep = [
+  Zd
 ];
-function np(e, t) {
-  return $e(), Me("svg", Zd, tp);
+function tp(e, t) {
+  return $e(), Me("svg", Xd, ep);
 }
-const op = /* @__PURE__ */ lt(Xd, [["render", np]]), rp = {}, ip = {
+const np = /* @__PURE__ */ lt(Qd, [["render", tp]]), op = {}, rp = {
   xmlns: "http://www.w3.org/2000/svg",
   width: "20",
   height: "20",
   fill: "currentColor"
-}, sp = /* @__PURE__ */ q("path", { d: "M10 3.22l-.61-.6a5.5 5.5 0 0 0-7.666.105 5.5 5.5 0 0 0-.114 7.665L10 18.78l8.39-8.4a5.5 5.5 0 0 0-.114-7.665 5.5 5.5 0 0 0-7.666-.105l-.61.61z" }, null, -1), lp = [
-  sp
+}, ip = /* @__PURE__ */ q("path", { d: "M10 3.22l-.61-.6a5.5 5.5 0 0 0-7.666.105 5.5 5.5 0 0 0-.114 7.665L10 18.78l8.39-8.4a5.5 5.5 0 0 0-.114-7.665 5.5 5.5 0 0 0-7.666-.105l-.61.61z" }, null, -1), sp = [
+  ip
 ];
-function cp(e, t) {
-  return $e(), Me("svg", ip, lp);
+function lp(e, t) {
+  return $e(), Me("svg", rp, sp);
 }
-const ap = /* @__PURE__ */ lt(rp, [["render", cp]]), up = /* @__PURE__ */ q("a", {
+const cp = /* @__PURE__ */ lt(op, [["render", lp]]), ap = /* @__PURE__ */ q("a", {
   href: "https://vuejs.org/",
   target: "_blank",
   rel: "noopener"
-}, "official documentation", -1), fp = /* @__PURE__ */ q("a", {
+}, "official documentation", -1), up = /* @__PURE__ */ q("a", {
   href: "https://vitejs.dev/guide/features.html",
   target: "_blank",
   rel: "noopener"
-}, "Vite", -1), dp = /* @__PURE__ */ q("a", {
+}, "Vite", -1), fp = /* @__PURE__ */ q("a", {
   href: "https://code.visualstudio.com/",
   target: "_blank",
   rel: "noopener"
-}, "VSCode", -1), pp = /* @__PURE__ */ q("a", {
+}, "VSCode", -1), dp = /* @__PURE__ */ q("a", {
   href: "https://github.com/johnsoncodehk/volar",
   target: "_blank",
   rel: "noopener"
-}, "Volar", -1), hp = /* @__PURE__ */ q("a", {
+}, "Volar", -1), pp = /* @__PURE__ */ q("a", {
   href: "https://www.cypress.io/",
   target: "_blank",
   rel: "noopener"
-}, "Cypress", -1), mp = /* @__PURE__ */ q("a", {
+}, "Cypress", -1), hp = /* @__PURE__ */ q("a", {
   href: "https://on.cypress.io/component",
   target: "_blank"
-}, "Cypress Component Testing", -1), gp = /* @__PURE__ */ q("br", null, null, -1), _p = /* @__PURE__ */ q("code", null, "README.md", -1), Ep = /* @__PURE__ */ q("a", {
+}, "Cypress Component Testing", -1), mp = /* @__PURE__ */ q("br", null, null, -1), gp = /* @__PURE__ */ q("code", null, "README.md", -1), _p = /* @__PURE__ */ q("a", {
   href: "https://pinia.vuejs.org/",
   target: "_blank",
   rel: "noopener"
-}, "Pinia", -1), vp = /* @__PURE__ */ q("a", {
+}, "Pinia", -1), Ep = /* @__PURE__ */ q("a", {
   href: "https://router.vuejs.org/",
   target: "_blank",
   rel: "noopener"
-}, "Vue Router", -1), yp = /* @__PURE__ */ q("a", {
+}, "Vue Router", -1), vp = /* @__PURE__ */ q("a", {
   href: "https://test-utils.vuejs.org/",
   target: "_blank",
   rel: "noopener"
-}, "Vue Test Utils", -1), bp = /* @__PURE__ */ q("a", {
+}, "Vue Test Utils", -1), yp = /* @__PURE__ */ q("a", {
   href: "https://github.com/vuejs/devtools",
   target: "_blank",
   rel: "noopener"
-}, "Vue Dev Tools", -1), Np = /* @__PURE__ */ q("a", {
+}, "Vue Dev Tools", -1), bp = /* @__PURE__ */ q("a", {
   href: "https://github.com/vuejs/awesome-vue",
   target: "_blank",
   rel: "noopener"
-}, "Awesome Vue", -1), wp = /* @__PURE__ */ q("a", {
+}, "Awesome Vue", -1), Np = /* @__PURE__ */ q("a", {
   href: "https://chat.vuejs.org",
   target: "_blank",
   rel: "noopener"
-}, "Vue Land", -1), Op = /* @__PURE__ */ q("a", {
+}, "Vue Land", -1), wp = /* @__PURE__ */ q("a", {
   href: "https://stackoverflow.com/questions/tagged/vue.js",
   target: "_blank",
   rel: "noopener"
-}, "StackOverflow", -1), xp = /* @__PURE__ */ q("a", {
+}, "StackOverflow", -1), Op = /* @__PURE__ */ q("a", {
   href: "https://news.vuejs.org",
   target: "_blank",
   rel: "noopener"
-}, "our mailing list", -1), Dp = /* @__PURE__ */ q("a", {
+}, "our mailing list", -1), xp = /* @__PURE__ */ q("a", {
   href: "https://twitter.com/vuejs",
   target: "_blank",
   rel: "noopener"
-}, "@vuejs", -1), $p = /* @__PURE__ */ q("a", {
+}, "@vuejs", -1), Dp = /* @__PURE__ */ q("a", {
   href: "https://vuejs.org/sponsor/",
   target: "_blank",
   rel: "noopener"
-}, "becoming a sponsor", -1), Cp = /* @__PURE__ */ In({
+}, "becoming a sponsor", -1), $p = /* @__PURE__ */ In({
   __name: "TheWelcome",
   setup(e) {
     return (t, n) => ($e(), Me(De, null, [
       X(an, null, {
         icon: ae(() => [
-          X(zd)
+          X(jd)
         ]),
         heading: ae(() => [
           G("Documentation")
         ]),
         default: ae(() => [
           G(" Vue’s "),
-          up,
+          ap,
           G(" provides you with all information you need to get started. ")
         ]),
         _: 1
       }),
       X(an, null, {
         icon: ae(() => [
-          X(Kd)
+          X(Bd)
         ]),
         heading: ae(() => [
           G("Tooling")
         ]),
         default: ae(() => [
           G(" This project is served and bundled with "),
-          fp,
+          up,
           G(". The recommended IDE setup is "),
-          dp,
+          fp,
           G(" + "),
-          pp,
+          dp,
           G(". If you need to test your components and web pages, check out "),
-          hp,
+          pp,
           G(" and "),
-          mp,
+          hp,
           G(". "),
-          gp,
+          mp,
           G(" More instructions are available in "),
-          _p,
+          gp,
           G(". ")
         ]),
         _: 1
       }),
       X(an, null, {
         icon: ae(() => [
-          X(Qd)
+          X(Jd)
         ]),
         heading: ae(() => [
           G("Ecosystem")
         ]),
         default: ae(() => [
           G(" Get official tools and libraries for your project: "),
+          _p,
+          G(", "),
           Ep,
           G(", "),
           vp,
-          G(", "),
-          yp,
           G(", and "),
-          bp,
+          yp,
           G(". If you need more resources, we suggest paying "),
-          Np,
+          bp,
           G(" a visit. ")
         ]),
         _: 1
       }),
       X(an, null, {
         icon: ae(() => [
-          X(op)
+          X(np)
         ]),
         heading: ae(() => [
           G("Community")
         ]),
         default: ae(() => [
           G(" Got stuck? Ask your question on "),
-          wp,
+          Np,
           G(", our official Discord server, or "),
-          Op,
+          wp,
           G(". You should also subscribe to "),
-          xp,
+          Op,
           G(" and follow the official "),
-          Dp,
+          xp,
           G(" twitter account for latest news in the Vue world. ")
         ]),
         _: 1
       }),
       X(an, null, {
         icon: ae(() => [
-          X(ap)
+          X(cp)
         ]),
         heading: ae(() => [
           G("Support Vue")
         ]),
         default: ae(() => [
           G(" As an independent project, Vue relies on community backing for its sustainability. You can help us by "),
-          $p,
+          Dp,
           G(". ")
         ]),
         _: 1
       })
     ], 64));
   }
-}), Vp = /* @__PURE__ */ In({
+}), Cp = /* @__PURE__ */ In({
   __name: "HomeView",
   setup(e) {
     return (t, n) => ($e(), Me("main", null, [
-      X(Cp)
+      X($p)
     ]));
   }
-}), vn = "/microAppTwo", Ol = vd({
-  history: yf("/"),
-  routes: [
-    {
-      path: `${vn}/`,
-      name: "home",
-      component: Vp
-    },
-    {
-      path: `${vn}/about`,
-      name: "about",
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import("./AboutView-c9a160b5.js")
-    }
-  ]
-});
-Ol.afterEach((e, t) => {
-  var n;
-  (n = window.eventBus) == null || n.emit(ar, { fullPath: e.fullPath });
-});
+}), vn = "/microAppTwo";
+function Vp() {
+  const e = Ed({
+    history: vf("/"),
+    routes: [
+      {
+        path: `${vn}/`,
+        name: "home",
+        component: Cp
+      },
+      {
+        path: `${vn}/about`,
+        name: "about",
+        // route level code-splitting
+        // this generates a separate chunk (About.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () => import("./AboutView-9fa61b31.js")
+      },
+      {
+        path: "/:pathMatch(.*)*",
+        name: "wildcard",
+        // route level code-splitting
+        // this generates a separate chunk (About.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () => import("./AboutView-9fa61b31.js")
+      }
+    ]
+  });
+  return e.afterEach((t, n) => {
+    var o;
+    (o = window.eventBus) == null || o.emit(ar, { fullPath: t.fullPath });
+  }), e;
+}
 const Sp = (e) => (ws("data-v-3004ae6f"), e = e(), Os(), e), Ip = {
   key: 0,
   span: ""
 }, Pp = /* @__PURE__ */ Sp(() => /* @__PURE__ */ q("img", {
   alt: "Vue logo",
   class: "logo",
-  src: nf,
+  src: tf,
   width: "125",
   height: "125"
 }, null, -1)), Tp = { class: "wrapper" }, Rp = { key: 1 }, Ap = {
@@ -7128,7 +7139,7 @@ const Sp = (e) => (ws("data-v-3004ae6f"), e = e(), Os(), e), Ip = {
       q("header", null, [
         Pp,
         q("div", Tp, [
-          X(Vd, { msg: "You did it!" }),
+          X(Cd, { msg: "You did it!" }),
           q("nav", null, [
             X(Te(lr), {
               to: `${Te(vn)}/`
@@ -7149,14 +7160,14 @@ const Sp = (e) => (ws("data-v-3004ae6f"), e = e(), Os(), e), Ip = {
           ])
         ])
       ]),
-      X(Te(gl)),
-      X(wd)
+      X(Te(_l)),
+      X(Nd)
     ])) : ($e(), Me("span", Rp));
   }
 }, Mp = /* @__PURE__ */ lt(Ap, [["__scopeId", "data-v-3004ae6f"]]);
 function kp(e) {
-  const t = Ou(Mp);
-  return t.use(tf()), t.use(Ol), t.mount(`#${e}`), t;
+  const t = wu(Mp);
+  return t.use(ef()), t.use(Vp()), t.mount(`#${e}`), t;
 }
 export {
   lt as _,
